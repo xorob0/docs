@@ -1,5 +1,9 @@
 # Linx
 
+[Linx](https://github.com/andreimarcu/linx-server) is a file host with an api that's compatible with `wget`
+
+## Compose
+
 ```
 version: '3.3'
 services:

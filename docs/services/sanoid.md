@@ -97,6 +97,7 @@ To enable sanoid I simply run:
 
 ```
 systemctl enable sanoid.timer
+systemctl start sanoid.timer
 ```
 
 ## Syncoid
