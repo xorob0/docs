@@ -28,6 +28,7 @@ nav:
       - "software.md"
   - "Services":
       - "services/template.md"
+      - "services/caddy.md"
       - "Media Server":
         - "services/plex.md"
         - "services/tautulli.md"
@@ -36,12 +37,20 @@ nav:
         - "services/sonarr.md"
         - "services/bazarr.md"
         - "services/ombi.md"
-      - "services/caddy.md"
+      - "Torrents":
+        - "services/qbittorrent.md"
+        - "services/flood.md"
       - "services/portainer.md"
       - "services/miniflux.md"
       - "services/linx.md"
       - "services/librephotos.md"
+      - "services/adguardhome.md"
+      - "services/organizr.md"
+      - "services/syncthing.md"
+      - "services/vscode.md"
       - "services/sanoid.md"
       - "services/wireguard.md"
+      - "Monitoring":
+        -'services/prometheus.md'
   - "About":
       - "license.md"
