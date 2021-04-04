@@ -1,5 +1,7 @@
 # Organizr
 
+[Organizr](https://organizr.app/) can agregate all my selfhosted web ui into one and generate a cool dashboard with widget from some of them.
+
 ## Compose
 
 ```

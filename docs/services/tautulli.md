@@ -1,6 +1,6 @@
 # Tautulli
 
-[Tautulli](https://tautulli.com/) is a tool monitor you Plex server, it can give you stats, a dashboard and notifications.
+[Tautulli](https://tautulli.com/) is a tool monitor you [Plex](/services/plex) server, it can give you stats, a dashboard and notifications.
 
 ## Compose
 

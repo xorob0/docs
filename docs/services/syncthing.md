@@ -1,4 +1,5 @@
 # Syncthing
+[Syncthing](https://syncthing.net/) is a tool to sync folders in P2P between all your devices
 
 ## Compose
 

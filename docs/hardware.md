@@ -10,10 +10,10 @@ Then came Celty. I got her for 50€ from a acquaintance. She was only a 4th gen
 
 When I started working I gave Celty some upgrades and she became what she is today:
 
-- CPU: i3-10100
-- Motherboard: MSI Z490-A PRO
+- CPU: [i3-10100](https://ark.intel.com/content/www/us/en/ark/products/199283/intel-core-i3-10100-processor-6m-cache-up-to-4-30-ghz.html)
+- Motherboard: [MSI Z490-A PRO](https://www.msi.com/Motherboard/Z490-A-PRO)
 - RAM: 1x16Go
-- Boot drive: 2 Sandisk Extreme Pro 500Gb
+- Boot drive: 2 [Sandisk Extreme Pro 500Gb](https://shop.westerndigital.com/en-ap/products/internal-drives/sandisk-extreme-pro-m2-nvme-3d-ssd)
 - Cooler: Evo 212
 - Case: Nanoxia Deep Silence 3
 

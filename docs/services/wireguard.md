@@ -1,6 +1,6 @@
 # WireGuard
 
-Wireguard is a performant vpn with client on almost all platforms.
+[Wireguard](https://www.wireguard.com/) is a performant vpn with client on almost all platforms.
 
 # Compose
 

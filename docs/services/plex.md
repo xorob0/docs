@@ -21,6 +21,7 @@ services:
     devices:
       - /dev/dri:/dev/dri
 ```
+
 I'm using [linuxserver.io's image](https://docs.linuxserver.io/images/docker-plex)
 
 ### tmpfs
@@ -61,7 +62,7 @@ Instead I set up a "Custom server access URL" under "Network"
 
 ![Custom server access URL](../assets/custom_access_url.png)
 
-For this to work I am routing with Caddy #TODO: add link to caddy
+For this to work I am routing with [Caddy](/services/caddy) #TODO: add link to caddy
 
 This has several benefits:
 

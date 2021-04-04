@@ -6,13 +6,13 @@ The Software side of things had a lot more iterations than the hardware side.
 
 Back on my Raspberry Pi I was on Open Media Vault and really didn't like it. Every update broke the system, but I didn't have a lot of experience back then so that may be my fault too 🤷.
 
-On Celty I used FreeNAS for a long time. Back in the days it was basically the only way to have ZFS with good performances. I kept FreeNAS for a few years until the release of OpenZFS 2.0.0 which made it possible to move to Linux.
+On Celty I used FreeNAS for a long time. Back in the days it was basically the only way to have ZFS with good performances. I kept FreeNAS for a few years until the release of [OpenZFS](https://github.com/openzfs/zfs) 2.0.0 which made it possible to move to Linux.
 
-At that time I a friend was setting up his server with OMV and docker and the simply of docker really intrigued me. That's why on December 2020 I moved to Ubuntu 20.04 with docker and OpenZFS. I loved it even if the OpenZFS setup was quite messy because it was not yet officially supported by Ubuntu.
+At that time I a friend was setting up his server with OMV and docker and the simply of docker really intrigued me. That's why on December 2020 I moved to Ubuntu 20.04 with docker and [OpenZFS](https://github.com/openzfs/zfs). I loved it even if the [OpenZFS](https://github.com/openzfs/zfs) setup was quite messy because it was not yet officially supported by Ubuntu.
 
-A few weeks later I upgraded my hardware and kind of broke my install. I decided to go with Proxmox as it was supposed to have a really up to date OpenZFS version. I discovered this was false and had to install the beta kernel to have it working.
+A few weeks later I upgraded my hardware and kind of broke my install. I decided to go with [Proxmox VE](https://www.proxmox.com/en/proxmox-ve) as it was supposed to have a really up to date [OpenZFS](https://github.com/openzfs/zfs) version. I discovered this was false and had to install the beta kernel to have it working.
 
-On my latest setup I tried TrueNAS SCALE which just lacks too much docker features for me at the moment and Ubuntu server which I dumped because it doesn't support root on ZFS right now.
+On my latest setup I tried [TrueNAS SCALE](https://www.truenas.com/truenas-scale/) which just lacks too much docker features for me at the moment and Ubuntu server which I dumped because it doesn't support root on ZFS right now.
 
 ## Current config
 
@@ -20,7 +20,7 @@ On my latest setup I tried TrueNAS SCALE which just lacks too much docker featur
 
 #### Setup
 
-I did my first Proxmox install for the ZFS support, which happened to be not as good as I hoped. But right now I am still rocking Proxmox for it root on ZFS support and I really like it. I have a dual NVME boot drive in ZFS mirror and I can easily do snapshot of anything on my OS disk.
+I did my first [Proxmox VE](https://www.proxmox.com/en/proxmox-ve) install for the ZFS support, which happened to be not as good as I hoped. But right now I am still rocking [Proxmox VE](https://www.proxmox.com/en/proxmox-ve) for it root on ZFS support and I really like it. I have a dual NVME boot drive in ZFS mirror and I can easily do snapshot of anything on my OS disk.
 
 #### Tips
 
@@ -64,7 +64,7 @@ I also have a ZFS root (`rpool`) partition with a few datasets
 
 ### Migration
 
-To migrate from an existing proxmox to a new install, all I have to do is:
+To migrate from an existing [Proxmox VE](https://www.proxmox.com/en/proxmox-ve) to a new install, all I have to do is:
 
 ```
 rsync -av /mnt/old/configs /configs
@@ -73,7 +73,7 @@ rsync -av /mnt/old/var/lib/docker /docker
 
 ### Docker installation
 
-I install docker directly on the proxmox host as I probably won't ever use LXC or KVM.
+I install docker directly on the [Proxmox VE](https://www.proxmox.com/en/proxmox-ve) host as I probably won't ever use LXC or KVM.
 
 ```
 apt remove docker docker-engine docker.io containerd runc
