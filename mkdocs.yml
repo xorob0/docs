@@ -28,8 +28,14 @@ nav:
       - "software.md"
   - "Services":
       - "services/template.md"
-      - "services/plex.md"
-      - "services/radarr.md"
+      - "Media Server":
+        - "services/plex.md"
+        - "services/tautulli.md"
+        - "services/jackett.md"
+        - "services/radarr.md"
+        - "services/sonarr.md"
+        - "services/bazarr.md"
+        - "services/ombi.md"
       - "services/librephotos.md"
       - "services/sanoid.md"
       - "services/wireguard.md"
