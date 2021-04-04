@@ -30,16 +30,16 @@ nav:
       - "services/template.md"
       - "services/caddy.md"
       - "Media Server":
-        - "services/plex.md"
-        - "services/tautulli.md"
-        - "services/jackett.md"
-        - "services/radarr.md"
-        - "services/sonarr.md"
-        - "services/bazarr.md"
-        - "services/ombi.md"
+          - "services/plex.md"
+          - "services/tautulli.md"
+          - "services/jackett.md"
+          - "services/radarr.md"
+          - "services/sonarr.md"
+          - "services/bazarr.md"
+          - "services/ombi.md"
       - "Torrents":
-        - "services/qbittorrent.md"
-        - "services/flood.md"
+          - "services/qbittorrent.md"
+          - "services/flood.md"
       - "services/portainer.md"
       - "services/miniflux.md"
       - "services/linx.md"
@@ -51,6 +51,6 @@ nav:
       - "services/sanoid.md"
       - "services/wireguard.md"
       - "Monitoring":
-        -'services/prometheus.md'
+          - "services/prometheus.md"
   - "About":
       - "license.md"
