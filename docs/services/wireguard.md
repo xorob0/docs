@@ -5,7 +5,6 @@ Wireguard is a performant vpn with client on almost all platforms.
 # Compose
 
 ```
----
 version: "3.3"
 services:
   wireguard:
