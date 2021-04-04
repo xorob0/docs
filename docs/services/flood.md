@@ -1,5 +1,7 @@
 # Flood
 
+[Flood](https://flood.js.org/) is an alternative frontend for torrent clients (in this case [QbitTorrent](/../qbittorrent/))
+
 ## Compose
 
 ```
