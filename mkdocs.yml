@@ -36,6 +36,8 @@ nav:
         - "services/sonarr.md"
         - "services/bazarr.md"
         - "services/ombi.md"
+      - "services/caddy.md"
+      - "services/portainer.md"
       - "services/librephotos.md"
       - "services/sanoid.md"
       - "services/wireguard.md"
