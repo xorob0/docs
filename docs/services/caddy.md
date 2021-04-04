@@ -1,7 +1,9 @@
 # Caddy
+
 [Caddy](https://caddyserver.com/) is my reverse proxy of choice. It manages Let's Encrypt on it's own and only needs a config file.
 
-## Compose 
+## Compose
+
 ```
 version: '3.3'
 services:
@@ -17,3 +19,5 @@ services:
       - 80:80
       - 8448:8448
 ```
+
+#TODO: config file
