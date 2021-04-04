@@ -1,7 +1,6 @@
 # Plex
 
 [Plex Media Server](https://www.plex.tv/) is a streaming service you can host at home (with your own content).
-I'm using [linuxserver.io's image](https://docs.linuxserver.io/images/docker-plex)
 
 ## Compose
 
@@ -22,6 +21,7 @@ services:
     devices:
       - /dev/dri:/dev/dri
 ```
+I'm using [linuxserver.io's image](https://docs.linuxserver.io/images/docker-plex)
 
 ### tmpfs
 
