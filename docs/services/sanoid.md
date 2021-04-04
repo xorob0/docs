@@ -2,9 +2,20 @@
 
 [Sanoid](https://github.com/jimsalterjrs/sanoid/) is a tool to autmate snapshot on ZFS. I also use syncoid to upload some of my snapshots to `extra` as a quick backup.
 
-# Install
+Sanoid is the only service not (yet) running from a docker container. I just install it on my main system.
 
-https://github.com/jimsalterjrs/sanoid/blob/master/INSTALL.md
+## Install
+
+```
+apt install git
+cd /tmp
+git clone https://github.com/jimsalterjrs/sanoid.git
+cd sanoid
+git checkout $(git tag | grep "^v" | tail -n 1)
+ln -s packages/debian .
+dpkg-buildpackage -uc -us
+apt install ../sanoid_*_all.deb
+```
 ## Config
 ```
 [HDD1/Documents]
