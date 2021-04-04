@@ -13,6 +13,7 @@ When I started working I gave Celty some upgrades and she became what she is tod
 - CPU: i3-10100
 - Motherboard: MSI Z490-A PRO
 - RAM: 1x16Go
+- Boot drive: 2 Sandisk Extreme Pro 500Gb
 - Cooler: Evo 212
 - Case: Nanoxia Deep Silence 3
 
@@ -22,12 +23,9 @@ So why did I go with this setup ? I wanted to be able to transcode 4k so I don't
 
 I currently have 6 hard drives in this box:
 
-- 2*4To
-- 2*6To
-- 1*12To
-- 1*480Go SSD
+- 2\*4To
+- 2\*6To
+- 1\*12To
+- 1\*480Go SSD
 
-Everything is SATA for the moment. I hit a point now where I have as much drives as SATA ports, that means two important things:
-
-- If I need all my drives at the same time, I don't have a port available to replace a disk if it starts behaving
-- For my next upgrade I'll need a PCIe card which is either expensive or shitty
+I am now saturating my motherboard's SATA connectors, which is not a good thing.
