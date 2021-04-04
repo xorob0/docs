@@ -12,7 +12,7 @@ services:
     container_name: ${NAME}
     restart: unless-stopped
     volumes:
-      - /configs/${NAME}:/etc/caddy/Caddyfile:ro  # to mount custom Caddyfile
+      - /configs/${NAME}:/config
       - /HDD1/foo:/foo
       - /HDD1/bar:/bar
 ```
@@ -51,7 +51,7 @@ This line is just magic, it makes the container behave exactly as I want it to. 
 
 ```
     volumes:
-      - /configs/${NAME}:/etc/caddy/Caddyfile:ro  # to mount custom Caddyfile
+      - /configs/${NAME}:/config
       - /HDD1/foo:/foo
       - /HDD1/bar:/bar
 ```
