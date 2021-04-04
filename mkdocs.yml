@@ -38,6 +38,8 @@ nav:
         - "services/ombi.md"
       - "services/caddy.md"
       - "services/portainer.md"
+      - "services/miniflux.md"
+      - "services/linx.md"
       - "services/librephotos.md"
       - "services/sanoid.md"
       - "services/wireguard.md"
