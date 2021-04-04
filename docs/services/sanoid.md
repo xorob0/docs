@@ -2,6 +2,9 @@
 
 [Sanoid](https://github.com/jimsalterjrs/sanoid/) is a tool to autmate snapshot on ZFS. I also use syncoid to upload some of my snapshots to `extra` as a quick backup.
 
+# Install
+
+https://github.com/jimsalterjrs/sanoid/blob/master/INSTALL.md
 ## Config
 ```
 [HDD1/Documents]

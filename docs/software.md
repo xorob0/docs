@@ -10,26 +10,89 @@ On Celty I used FreeNAS for a long time. Back in the days it was basically the o
 
 At that time I a friend was setting up his server with OMV and docker and the simply of docker really intrigued me. That's why on December 2020 I moved to Ubuntu 20.04 with docker and OpenZFS. I loved it even if the OpenZFS setup was quite messy because it was not yet officially supported by Ubuntu.
 
+A few weeks later I upgraded my hardware and kind of broke my install. I decided to go with Proxmox as it was supposed to have a really up to date OpenZFS version. I discovered this was false and had to install the beta kernel to have it working.
+
+On my latest setup I tried TrueNAS SCALE which just lacks too much docker features for me at the moment and Ubuntu server which I dumped because it doesn't support root on ZFS right now.
+
 ## Current config
 
 ### Operating System
 
-A few weeks later I upgraded my hardware and kind of broke my install. I decided to go with Proxmox as it was supposed to have a really up to date OpenZFS version. I discovered this was false and had to install the beta kernel to have it working.
+#### Setup
 
-In hindsight, Proxmox is really not the best OS for me, but I'll stick to it until I get my hand on 2 NVME drive and _need_ to re-install everything. I'll probably go with an Ubuntu install again but this time with ZFS for my SSD to use snapshots on my configs.
+I did my first Proxmox install for the ZFS support, which happened to be not as good as I hoped. But right now I am still rocking Proxmox for it root on ZFS support and I really like it. I have a dual NVME boot drive in ZFS mirror and I can easily do snapshot of anything on my OS disk.
+
+#### Tips
+
+#### Edge Kernel
+
+I had to install the [edge kernel](https://github.com/fabianishere/pve-edge-kernel) to get my ethernet card working:
+
+```
+cd /tmp
+wget $(curl -s https://api.github.com/repos/fabianishere/pve-edge-kernel/releases/latest | grep 'browser_' | cut -d\" -f4 | grep headers)
+wget $(curl -s https://api.github.com/repos/fabianishere/pve-edge-kernel/releases/latest | grep 'browser_' | cut -d\" -f4 | grep kernel | head -1)
+apt install pve-edge-*.deb
+```
+
+#### PVE Test Repository
+
+To have a recent enough version of ZFS on Linux I needed to install the [PVE Test Repository](https://pve.proxmox.com/wiki/Package_Repositories#sysadmin_test_repo).
+
+```
+echo "deb http://download.proxmox.com/debian/pve buster pvetest" >> /etc/apt/sources.list
+apt update
+apt upgrade
+```
 
 ### ZFS
 
 With my latest disk upgrade I started managing 2 pools, a stripped pool with most of my disks (badly named `HDD1`) and an other stripped pool with the disks I don't want in my main pool (named `extra`).
 
-As explained above, I don't want my main pool to ever gets bigger than 4 disks, this reduces the risk that one of my disk would fail and also let me keep one SATA port available at all time in case I need to replace a drive. That maximun number of disk might increase to 5 when I get some NVME drives for my OS.
+As explained above, I don't want my main pool to ever gets bigger than 5 disks, this reduces the risk that one of my disk would fail and also let me keep one SATA port available at all time in case I need to replace a drive.
 
-#TODO: datasets
+I only have a few datasets:
 
-https://github.com/fabianishere/pve-edge-kernel
-https://pve.proxmox.com/wiki/Package_Repositories
-https://github.com/jimsalterjrs/sanoid/blob/master/INSTALL.md
-rsync /configs
-rsync /var/lib/docker
+- `HDD1/Media`: with all my medias (and my download folder). This needs to be on the same dataset so I can hardlink my movies from my download folder to my Movies folder (and avoid duplicates)
+- `HDD1/Documents`: with my NextCloud storage, including my pictures
+- `HDD1/Backups`: with some old unorganized backups and some new Time Machine backups
 
-https://raw.githubusercontent.com/portainer/templates/master/templates-2.0.json
+I also have a ZFS root (`rpool`) partition with a few datasets
+
+- `rpool/configs`: all my configs folders that I mount on my docker containers
+  - `rpool/configs/plex`: some of my container have their own datasets so it's easier to backup
+
+### Migration
+
+To migrate from an existing proxmox to a new install, all I have to do is:
+
+```
+rsync -av /mnt/old/configs /configs
+rsync -av /mnt/old/var/lib/docker /docker
+```
+
+### Docker installation
+
+I install docker directly on the proxmox host as I probably won't ever use LXC or KVM.
+
+```
+apt remove docker docker-engine docker.io containerd runc
+apt update
+apt install apt-transport-https ca-certificates curl gnupg lsb-release
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive
+echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
+apt update
+apt install docker-ce docker-ce-cli containerd.io
+systemctl start docker
+systemctl enable docker
+```
+
+#### Portainer Setup
+
+As I do almost everything from portainer I just fire it up and do everything from the commandline.
+
+```
+docker run -d -p 8000:8000 -p 9000:9000 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v /configs/portainer:/data portainer/portainer-ce
+```
+
+If I ran the migration lines this part should not even be needed.
