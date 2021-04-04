@@ -1,5 +1,8 @@
 # Plex
 
+[Plex Media Server](https://www.plex.tv/) is a streaming service you can host at home (with your own content).
+I'm using [linuxserver.io's image](https://docs.linuxserver.io/images/docker-plex)
+
 ## Compose
 
 ```
@@ -9,15 +12,11 @@ services:
     image: ghcr.io/linuxserver/plex
     container_name: plex
     restart: unless-stopped
-    environment:
-      - VERSION=docker
     volumes:
       - /configs/plex:/config
       - /HDD1/Media/TV-Shows:/tv
       - /HDD1/Media/Movies:/movies
       - /HDD1/Media/Lives:/lives
-      - /HDD1/Media/courses:/courses
-      - /HDD1/Media/Workout:/wourkouts
     tmpfs:
       - /tmp
     devices:
@@ -39,6 +38,7 @@ To use QuickSync for transcoding I need to pass `/dev/dri` to the container. Aft
 ## Tips
 
 ### Put your thumnails on your SSD
+
 I used to have my thumbnails and my preview images on my HDD, this makes the UI feels really slow. But on the other hand these images can take up a lot of space, I'm currently at 50Go for my Plex Media Server folder. This could be mitigated with a CDN but might get you bad performances on local network.
 
 ### Get Plex Pass
@@ -63,7 +63,8 @@ Instead I set up a "Custom server access URL" under "Network"
 
 For this to work I am routing with Caddy #TODO: add link to caddy
 
-This has several benefits: 
+This has several benefits:
+
 - I don't get blocked by firewall when trying to listen to my music at the ofice
 - I can use cloudflare's CDN for my images (they don't allow videos to be cached anymore)
 - Every services available outside my network is managed by my reverse proxy, meaning I have more control about it.
@@ -85,8 +86,10 @@ If you want to use `tmpfs` as your transcoding folder, you should set it in the 
 I advise you to use `/tmp` since I had some issues using other directories. It seems like the library used for EAC decoding was not using the path set up in the settings and would always go to `/tmp`.
 
 If it is not enabled, you should enable:
+
 - HDR tonemapping: This makes HDR content compatible with SDR devices. If disabled your HDR content will look washed out on SDR devices
 - Use hardware acceleration when available: This will use your GPU instead of you CPU for transocding
 
 ### Enable agents
+
 In the "Agents" settings you can add some agents that require API keys, they will make more content available like alternatives posters for your movies. They might also help with content matching.
