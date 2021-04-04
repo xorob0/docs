@@ -1,6 +1,6 @@
 # Bazarr
 
-[Bazarr](https://www.bazarr.media/) is a companion service to [Sonarr](/../sonarr) and [Radarr](/../radarr) that autmatically fetches subtitles from various sources
+[Bazarr](https://www.bazarr.media/) is a companion service to [Sonarr](/services/sonarr) and [Radarr](/services/radarr) that autmatically fetches subtitles from various sources
 
 ## Compose
 

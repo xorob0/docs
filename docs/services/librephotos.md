@@ -1,6 +1,6 @@
 # LibrePhotos
 
-[LibrePhotos](https://github.com/LibrePhotos/librephotos) is a really powerful web gallery application. I use it alongside [NextCloud](/../nextcloud) as a google photo alternative. The upload and management of the pictures is handled by [NextCloud](/../nextcloud), while LibrePhoto takes care of organizing it, matching faces and creating albums using A.I.
+[LibrePhotos](https://github.com/LibrePhotos/librephotos) is a really powerful web gallery application. I use it alongside [NextCloud](/services/nextcloud) as a google photo alternative. The upload and management of the pictures is handled by [NextCloud](/services/nextcloud), while LibrePhoto takes care of organizing it, matching faces and creating albums using A.I.
 
 # Compose
 
