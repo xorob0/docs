@@ -1,0 +1,37 @@
+site_name: Celty's Docs
+site_url: https://docs.gneee.tech
+site_description: Docs for my personal HomeLab
+site_author: Xorob0
+
+theme:
+  name: material
+  palette:
+    scheme: preference
+    accent: yellow
+  features:
+    - navigation.instant
+    - navigation.tabs
+    - navigation.sections
+  font: false
+
+extra_css:
+  - stylesheets/celty.css
+
+markdown_extensions:
+  - toc:
+      permalink: ⚓︎
+
+nav:
+  - "index.md"
+  - "Show off":
+      - "hardware.md"
+      - "software.md"
+  - "Services":
+      - "services/template.md"
+      - "services/plex.md"
+      - "services/radarr.md"
+      - "services/librephotos.md"
+      - "services/sanoid.md"
+      - "services/wireguard.md"
+  - "About":
+      - "license.md"
