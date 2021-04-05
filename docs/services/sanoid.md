@@ -16,7 +16,9 @@ ln -s packages/debian .
 dpkg-buildpackage -uc -us
 apt install ../sanoid_*_all.deb
 ```
+
 ## Config
+
 ```
 [HDD1/Documents]
 	use_template = production
@@ -105,13 +107,23 @@ systemctl start sanoid.timer
 Syncoid is a tool that comes with sanoid to automate zfs `send` and `recv`. I only backup important data and my configs. I don't feel the need to backup my movies because it would simply cost too much.
 
 ```
-#!/bin/bash
-/usr/sbin/syncoid -r --quiet --no-sync-snap rpool/configs extra/configs
-/usr/sbin/syncoid -r --quiet --no-sync-snap HDD1/Documents extra/Documents
-/usr/sbin/syncoid -r --quiet --no-sync-snap HDD1/Backups extra/Backups
+curl https://hc-ping.com/ID/start
+status=0
+/usr/sbin/syncoid -r --quiet --no-sync-snap rpool/configs extra/configs || status=1
+/usr/sbin/syncoid -r --quiet --no-sync-snap HDD1/Documents extra/Documents || status=1
+/usr/sbin/syncoid -r --quiet --no-sync-snap HDD1/Backups extra/Backups  || status=1
+
+if [[ ${status} -eq 1 ]]
+then
+	curl https://hc-ping.com/ID/fail
+else
+	curl https://hc-ping.com/ID
+fi
 ```
 
-I run this script every day at 3AM with this script
+I run this script every day at 3AM with this script. Using [healthcheck.io] I am alerted if the replication did not happened or went wrong.
+
+![healtcheck.io config](../assets/transcoder_path.png)
 
 ```
 0 3 * * * /root/replication
