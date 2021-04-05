@@ -61,4 +61,4 @@ For my data I often follow this simple convention.
 
 ## Ports
 
-I try to avoid using `ports` and do most of the routing internally with dockers's hostnames (as shown in caddy ) TODO: Add link to caddy
+I try to avoid using `ports` and do most of the routing internally with dockers's hostnames (as shown in [caddy](/services/caddy))

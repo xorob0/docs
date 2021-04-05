@@ -62,7 +62,7 @@ Instead I set up a "Custom server access URL" under "Network"
 
 ![Custom server access URL](../assets/custom_access_url.png)
 
-For this to work I am routing with [Caddy](/services/caddy) #TODO: add link to caddy
+For this to work I am routing with [Caddy](/services/caddy)
 
 This has several benefits:
 
