@@ -121,7 +121,9 @@ else
 fi
 ```
 
-I run this script every day at 3AM with this script. Using [healthcheck.io] I am alerted if the replication did not happened or went wrong.
+I run this script every day at 3AM with this script. 
+
+Using [healthcheck.io] I am alerted if the replication did not happened or went wrong.
 
 ![healtcheck.io config](../assets/transcoder_path.png)
 
