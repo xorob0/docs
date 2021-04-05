@@ -121,7 +121,7 @@ else
 fi
 ```
 
-I run this script every day at 3AM with this script.
+I run the replication every day at 3AM with this script.
 
 Using [healthcheck.io](healthcheck.io) I am alerted if the replication did not happened or went wrong.
 
