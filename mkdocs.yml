@@ -50,6 +50,7 @@ nav:
       - "services/vscode.md"
       - "services/sanoid.md"
       - "services/wireguard.md"
+      - "services/dendrite.md"
       - "Monitoring":
           - "services/prometheus.md"
   - "About":
