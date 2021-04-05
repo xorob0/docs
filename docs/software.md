@@ -56,6 +56,7 @@ I only have a few datasets:
 - `HDD1/Media`: with all my medias (and my download folder). This needs to be on the same dataset so I can hardlink my movies from my download folder to my Movies folder (and avoid duplicates)
 - `HDD1/Documents`: with my NextCloud storage, including my pictures
 - `HDD1/Backups`: with some old unorganized backups and some new Time Machine backups
+- `HDD1/Public`: with data from linx, it's limited to 200Go
 
 I also have a ZFS root (`rpool`) partition with a few datasets
 

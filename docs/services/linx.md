@@ -18,4 +18,10 @@ services:
     restart: unless-stopped
 ```
 
-#TODO: config file
+## Config
+```
+siteurl = https://linx.gneee.tech/
+sitename = Linx
+maxsize = 4294967296
+maxexpiry = 2592000
+```
