@@ -7,11 +7,12 @@ It is still in beta and is not recommended for daily use but I'm a thug.
 ## Compose
 
 ```
-version: "3.4"
+version: "3.3"
 services:
   monolith:
     hostname: monolith
     image: matrixdotorg/dendrite-monolith:latest
+        restart: unless-stopped
     command: [
       "--tls-cert=server.crt",
       "--tls-key=server.key"
@@ -27,36 +28,36 @@ services:
     restart: always
     volumes:
       - /configs/dendrite/postgres/create_db.sh:/docker-entrypoint-initdb.d/20-create_db.sh
+      - /configs/dendrite/postgres/data:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: password
       POSTGRES_USER: dendrite
-
-  # Zookeeper is only needed for polylith mode!
-  zookeeper:
-    hostname: zookeeper
-    image: zookeeper
-
-  # Kafka is only needed for polylith mode!
-  kafka:
-    container_name: dendrite_kafka
-    hostname: kafka
-    image: wurstmeister/kafka
-    environment:
-      KAFKA_ADVERTISED_HOST_NAME: "kafka"
-      KAFKA_DELETE_TOPIC_ENABLE: "true"
-      KAFKA_ZOOKEEPER_CONNECT: "zookeeper:2181"
-    depends_on:
-      - zookeeper
 ```
 
-I can probably remove zookeeper and kafka but I did not look into it at the moment.
-
+## Initial Setup
+Before starting any container, you need to generate some keys with
+```
+go get github.com/matrix-org/dendrite/cmd/generate-keys
+go run github.com/matrix-org/dendrite/cmd/generate-keys \
+  --private-key=matrix_key.pem \
+  --tls-cert=server.crt \
+  --tls-key=server.key
+```
 ## Config
 
-Apart from the database password there is not a lot of things to change. After creating your account(s) I still recommend disabling registration. You could enable the shared secret if you still want users you know to register later.
+Apart from the database password there is not a lot of things to change. 
+
+Enable nafka for monolith:
 
 ```
-client_api:
-  registration_disabled: true
-  registration_shared_secret: "yolo"
+  kafka:
+    use_naffka: false
+```
+
+After creating your account(s) I still recommend disabling registration. You could enable the shared secret if you still want users you know to register later.
+
+```
+  client_api:
+    registration_disabled: true
+    registration_shared_secret: "yolo"
 ```
