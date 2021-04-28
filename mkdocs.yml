@@ -26,6 +26,7 @@ nav:
   - "Show off":
       - "hardware.md"
       - "software.md"
+      - "tw-cli.md"
   - "Services":
       - "services/template.md"
       - "services/caddy.md"
