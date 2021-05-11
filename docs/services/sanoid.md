@@ -7,7 +7,7 @@ Sanoid is the only service not (yet) running from a docker container. I just ins
 ## Install
 
 ```
-apt install git
+apt install git debhelper dpkg-dev build-essential
 cd /tmp
 git clone https://github.com/jimsalterjrs/sanoid.git
 cd sanoid
