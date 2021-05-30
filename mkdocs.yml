@@ -27,7 +27,7 @@ nav:
       - "overview/servers.md"
       - "overview/homenetwork.md"
       - "overview/template.md"
-      - "overview/ZFS.md"
+      - "overview/zfs.md"
       - "overview/docker.md"
   - "Celty":
       - "Host":
