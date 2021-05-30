@@ -47,7 +47,7 @@ nav:
       - "Monitoring":
           - "celty/monitoring/cadvisor.md"
           - "celty/monitoring/node.md"
-      - "Others"
+      - "Others":
           - "celty/others/portaineragent.md"
           - "celty/others/dns.md"
           - "celty/others/watchtower.md"
@@ -68,7 +68,7 @@ nav:
           - "nimbus/monitoring/cadvisor.md"
           - "nimbus/monitoring/node.md"
           - "nimbus/monitoring/blackhole.md"
-      - "Others"
+      - "Others":
           - "celty/others/watchtower.md"
   - "Tinker":
       - "Host":
