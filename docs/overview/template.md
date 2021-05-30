@@ -7,14 +7,19 @@ This is the template I base most of my docker compose on. It is valid for most o
 ```
 version: '3.3'
 services:
-  ${NAME}:
-    image: ${IMAGE}
-    container_name: ${NAME}
+  NAME:
+    image: IMAGE
+    container_name: NAME
     restart: unless-stopped
     volumes:
-      - /configs/${NAME}:/config
+      - /configs/NAME:/config
       - /HDD1/foo:/foo
       - /HDD1/bar:/bar
+
+networks:
+  default:
+    external:
+      name: external
 ```
 
 Let's go block by block:
@@ -30,9 +35,9 @@ I'm using 3.3 as it's widely supported and I might sometimes need some v3 featur
 ## Name
 
 ```
-  ${NAME}:
-    image: ${IMAGE}
-    container_name: ${NAME}
+  NAME:
+    image: IMAGE
+    container_name: NAME
 ```
 
 Those lines shouldn't be surprinsing to anyone, I just prefer using the same name for the container and the `container_name`. I don't usually have multiple instances of the same container so that's not a problem. The only exception is for databases where I often removes the `container_name` line so I know what service the database is related to.
@@ -51,7 +56,7 @@ This line is just magic, it makes the container behave exactly as I want it to. 
 
 ```
     volumes:
-      - /configs/${NAME}:/config
+      - /configs/NAME:/config
       - /HDD1/foo:/foo
       - /HDD1/bar:/bar
 ```
@@ -62,3 +67,29 @@ For my data I often follow this simple convention.
 ## Ports
 
 I try to avoid using `ports` and do most of the routing internally with dockers's hostnames (as shown in [caddy](/services/caddy))
+
+## Network
+```
+networks:
+  default:
+    external:
+      name: external
+```
+
+```
+networks:
+  external:
+    name: external
+  internal:
+    internal: true
+  vlan200:
+    driver: macvlan
+    driver_opts:
+      parent: bond0.200
+    ipam:
+      config:
+        - subnet: "192.168.200.0/24"
+          ip_range: "192.168.200.64/26"
+          gateway: "192.168.200.1"
+```
+TODO

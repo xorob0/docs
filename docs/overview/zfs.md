@@ -1,10 +1,14 @@
-# Sanoid
+# ZFS
+## What is ZFS ?
+TODO
+
+## Sanoid
 
 [Sanoid](https://github.com/jimsalterjrs/sanoid/) is a tool to autmate snapshot on ZFS. I also use syncoid to upload some of my snapshots to `extra` as a quick backup.
 
 Sanoid is the only service not (yet) running from a docker container. I just install it on my main system.
 
-## Install
+### Install
 
 ```
 apt install git debhelper dpkg-dev build-essential
@@ -17,8 +21,8 @@ dpkg-buildpackage -uc -us
 apt install ../sanoid_*_all.deb
 ```
 
-## Config
-
+### Config
+TODO update this
 ```
 [HDD1/Documents]
 	use_template = production
@@ -102,7 +106,7 @@ systemctl enable sanoid.timer
 systemctl start sanoid.timer
 ```
 
-## Syncoid
+### Syncoid
 
 Syncoid is a tool that comes with sanoid to automate zfs `send` and `recv`. I only backup important data and my configs. I don't feel the need to backup my movies because it would simply cost too much.
 
