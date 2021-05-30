@@ -68,7 +68,7 @@ nav:
           - "nimbus/monitoring/node.md"
           - "nimbus/monitoring/blackhole.md"
       - "Others":
-          - "celty/others/watchtower.md"
+          - "nimbus/others/watchtower.md"
   - "Tinker":
       - "Host":
           - "tinker/host/raspberrypi.md"
@@ -82,8 +82,8 @@ nav:
           - "tinker/monitoring/cadvisor.md"
           - "tinker/monitoring/node.md"
       - "Others":
-          - "celty/others/portaineragent.md"
-          - "celty/others/dns.md"
-          - "celty/others/watchtower.md"
+          - "tinker/others/portaineragent.md"
+          - "tinker/others/dns.md"
+          - "tinker/others/watchtower.md"
   - "About":
       - "license.md"
