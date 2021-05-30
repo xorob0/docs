@@ -82,8 +82,8 @@ nav:
           - "tinker/monitoring/cadvisor.md"
           - "tinker/monitoring/node.md"
       - "Others":
-          - "tinker/others/portaineragent.md"
-          - "tinker/others/dns.md"
-          - "tinker/others/watchtower.md"
+          - "celty/others/portaineragent.md"
+          - "celty/others/dns.md"
+          - "celty/others/watchtower.md"
   - "About":
       - "license.md"
