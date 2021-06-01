@@ -75,6 +75,7 @@ networks:
     external:
       name: external
 ```
+This part is only needed if the service need to be accessed from caddy. It makes sur that this network and Caddy are in the same network and can access each others
 
 ```
 networks:
@@ -92,4 +93,6 @@ networks:
           ip_range: "192.168.200.64/26"
           gateway: "192.168.200.1"
 ```
-TODO
+Sometimes I need specific network for some services, for exemple when I need to connect a database and a service I prefer to add them both to an `internal` network with only the two of them.
+
+Also some services need to access internet through a specific vlan and this can be done with the `vlan200` settings.
