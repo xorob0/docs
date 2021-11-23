@@ -1,3 +1,7 @@
+---
+hide:
+  - navigation
+---
 # Overview
 - [Celty](celty/index.md)
 - [Nimbus](nimbus/index.md)
