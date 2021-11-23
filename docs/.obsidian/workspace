@@ -1,0 +1,98 @@
+{
+  "main": {
+    "id": "4b1bbb278dfb19ef",
+    "type": "split",
+    "children": [
+      {
+        "id": "ce033fd9dc6eac44",
+        "type": "leaf",
+        "state": {
+          "type": "graph",
+          "state": {}
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "24cb1cb3690f6db8",
+    "type": "split",
+    "children": [
+      {
+        "id": "c8add0244cd2d015",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "161cf5cd84d6730c",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "88cbdda3f0a809ea",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "db0f1434df4447f7",
+    "type": "split",
+    "children": [
+      {
+        "id": "cc3e4b8bedcd09f1",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "0e6f4ff1ef869b97",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "active": "ce033fd9dc6eac44",
+  "lastOpenFiles": [
+    "Untitled.md",
+    "secret.md",
+    "overview/servers.md",
+    "overview/homenetwork.md",
+    "overview/docker.md",
+    "overview/zfs.md",
+    "celty/host/zfs.md",
+    "index.md",
+    "license.md",
+    "overview/template.md"
+  ]
+}

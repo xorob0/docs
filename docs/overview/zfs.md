@@ -129,7 +129,7 @@ I run the replication every day at 3AM with this script.
 
 Using [healthcheck.io](healthcheck.io) I am alerted if the replication did not happened or went wrong.
 
-![healtcheck.io config](../assets/healthcheck.io.png)
+![healtcheck.io config](healthcheck.io.png)
 
 ```
 0 3 * * * /root/replication

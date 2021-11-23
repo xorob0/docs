@@ -1,0 +1,14 @@
+{
+  "spellcheck": true,
+  "showFrontmatter": true,
+  "foldHeading": true,
+  "foldIndent": true,
+  "vimMode": true,
+  "emacsyKeys": false,
+  "spellcheckDictionary": [
+    "Proxmox",
+    "Celty",
+    "Celty",
+    "selfhosted"
+  ]
+}
