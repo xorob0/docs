@@ -14,7 +14,7 @@ theme:
     - navigation.sections
     - navigation.tracking
   font: false
-  logo: assets/logo.png
+  logo: assets/logo.svg
 
 
 extra_css:
