@@ -101,14 +101,14 @@
   "active": "6569f3d8967717f4",
   "lastOpenFiles": [
     "docs/celty/index.md",
+    "docs/celty/host/proxmox.md",
+    "docs/celty/host/storage.md",
+    "docs/celty/host/zfs.md",
+    "docs/celty/host/docker.md",
     "docs/others/servers.md",
     "docs/index.md",
     "docs/nimbus/index.md",
     "docs/assets/logo.svg",
-    "docs/assets/logo.svg",
-    "docs/assets/logo.png",
-    "docs/celty/host/proxmox.md",
-    "docs/celty/host/storage.md",
-    "docs/celty/host/docker.md"
+    "docs/assets/logo.svg"
   ]
 }
