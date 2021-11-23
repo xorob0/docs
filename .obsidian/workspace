@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "docs/overview/servers.md",
+            "file": "docs/license.md",
             "mode": "source"
           }
         }
@@ -68,7 +68,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "docs/overview/servers.md",
+                "file": "docs/license.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -85,7 +85,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "docs/overview/servers.md",
+                "file": "docs/license.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -100,10 +100,10 @@
   },
   "active": "6569f3d8967717f4",
   "lastOpenFiles": [
-    "docs/overview/servers.md",
-    "docs/index.md",
-    "docs/assets/AIDA.jpg",
     "docs/license.md",
+    "docs/index.md",
+    "docs/overview/servers.md",
+    "docs/assets/AIDA.jpg",
     "docs/assets/Celty.png",
     "docs/secret.s.md",
     "README.md",

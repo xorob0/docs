@@ -1,3 +1,3 @@
-# Xorob0's documentation
+# Index
 - [Servers](servers.md)
 - [Network](servers.md)
