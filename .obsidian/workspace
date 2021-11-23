@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "docs/index.md",
+            "file": "docs/others/zfs.md",
             "mode": "source"
           }
         }
@@ -68,7 +68,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "docs/index.md",
+                "file": "docs/others/zfs.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -85,7 +85,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "docs/index.md",
+                "file": "docs/others/zfs.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -100,15 +100,15 @@
   },
   "active": "6569f3d8967717f4",
   "lastOpenFiles": [
-    "docs/index.md",
+    "docs/others/zfs.md",
+    "docs/others/template.md",
+    "docs/others/servers.md",
     "docs/others/index.md",
+    "docs/index.md",
     "docs/tinker/index.md",
     "docs/nimbus/index.md",
     "docs/celty/index.md",
-    "docs/others/zfs.md",
-    "docs/others/template.md",
     "docs/overview/index.md",
-    "docs/others/servers.md",
     "docs/overview/homenetwork.md"
   ]
 }
