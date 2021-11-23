@@ -7,10 +7,9 @@
         "id": "6569f3d8967717f4",
         "type": "leaf",
         "state": {
-          "type": "markdown",
+          "type": "image",
           "state": {
-            "file": "docs/others/zfs.md",
-            "mode": "source"
+            "file": "docs/assets/logo.png"
           }
         }
       }
@@ -68,7 +67,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "docs/others/zfs.md",
+                "file": "docs/assets/logo.png",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -85,7 +84,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "docs/others/zfs.md",
+                "file": "docs/assets/logo.png",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -100,15 +99,15 @@
   },
   "active": "6569f3d8967717f4",
   "lastOpenFiles": [
+    "docs/assets/logo.png",
+    "docs/assets/remote_access.png",
+    "docs/assets/profile_best.png",
+    "docs/assets/online_media_sources.png",
+    "docs/assets/hetzner_nimbus_specs_screenshot.png",
+    "docs/assets/healthcheck.io.png",
+    "docs/assets/custom_formats.png",
+    "docs/assets/custom_access_url.png",
     "docs/others/zfs.md",
-    "docs/others/template.md",
-    "docs/others/servers.md",
-    "docs/others/index.md",
-    "docs/index.md",
-    "docs/tinker/index.md",
-    "docs/nimbus/index.md",
-    "docs/celty/index.md",
-    "docs/overview/index.md",
-    "docs/overview/homenetwork.md"
+    "docs/others/template.md"
   ]
 }

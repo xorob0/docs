@@ -5,7 +5,7 @@
   "strictLineBreaks": false,
   "foldHeading": true,
   "foldIndent": true,
-  "showLineNumber": true,
+  "showLineNumber": false,
   "emacsyKeys": false,
   "newFileLocation": "current",
   "newLinkFormat": "relative",

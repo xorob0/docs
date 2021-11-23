@@ -14,6 +14,8 @@ theme:
     - navigation.sections
     - navigation.tracking
   font: false
+  logo: assets/logo.png
+
 
 extra_css:
   - stylesheets/celty.css
