@@ -21,6 +21,8 @@ extra_css:
 markdown_extensions:
   - toc:
       permalink: ⚓︎
+  - meta
+
 
 plugins:
   - search
