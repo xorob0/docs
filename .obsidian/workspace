@@ -7,8 +7,11 @@
         "id": "6569f3d8967717f4",
         "type": "leaf",
         "state": {
-          "type": "empty",
-          "state": {}
+          "type": "markdown",
+          "state": {
+            "file": "docs/index/index.md",
+            "mode": "source"
+          }
         }
       }
     ],
@@ -65,6 +68,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "docs/index/index.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -81,6 +85,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "docs/index/index.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -95,9 +100,10 @@
   },
   "active": "6569f3d8967717f4",
   "lastOpenFiles": [
-    "docs/license.md",
+    "docs/index/index.md",
     "docs/index.md",
-    "docs/overview/servers.md",
+    "docs/license.md",
+    "docs/index/servers.md",
     "docs/assets/AIDA.jpg",
     "docs/assets/Celty.png",
     "docs/secret.s.md",
