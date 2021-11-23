@@ -1,12 +1,20 @@
-# Proxmox
+# Software
 
-## Setup
+She runs [Proxmox](host/proxmox.md), mainly because its one of the few server distro that allow for root on [ZFS](zfs.md) in the installer. I might use some of the VM capability one day, but for the moment everything runs on [Docker](docs/celty/host/docker.md) straight from the host.
 
-I did my first [Proxmox VE](https://www.proxmox.com/en/proxmox-ve) install for the ZFS support, which happened to be not as good as I hoped. But right now I am still rocking [Proxmox VE](https://www.proxmox.com/en/proxmox-ve) for it root on ZFS support and I really like it. I have a dual NVME boot drive in ZFS mirror and I can easily do snapshot of anything on my OS disk.
+## Proxmox
 
-## Tips
+### Setup
 
-### Edge Kernel
+- Download [the latest image](https://www.proxmox.com/en/downloads/category/iso-images-pve)
+- Flash on an usb stick
+- Install from GUI
+
+### Tips
+
+#### Edge Kernel
+
+EDIT: this is not needed anymore with PVE 7.1
 
 I had to install the [edge kernel](https://github.com/fabianishere/pve-edge-kernel) to get my ethernet card working:
 
@@ -17,7 +25,7 @@ wget $(curl -s https://api.github.com/repos/fabianishere/pve-edge-kernel/release
 apt install pve-edge-*.deb
 ```
 
-### PVE Test Repository
+#### PVE Test Repository
 
 To have a recent enough version of ZFS on Linux I needed to install the [PVE Test Repository](https://pve.proxmox.com/wiki/Package_Repositories#sysadmin_test_repo).
 
@@ -26,4 +34,3 @@ echo "deb http://download.proxmox.com/debian/pve buster pvetest" >> /etc/apt/sou
 apt update
 apt upgrade
 ```
-
