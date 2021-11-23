@@ -1,5 +1,7 @@
 ## Hardware
 
+TODO: Picture of Celty (the server)
+
 It's a [i3-10100](https://ark.intel.com/content/www/us/en/ark/products/199283/intel-core-i310100-processor-6m-cache-up-to-4-30-ghz.html) with 16Gb of DDR4 and a lot of storage. The OS is installed on a ZFS mirrored NVME drive for reliability.
 
 One of the issue I faced is my motherboard disabling 2 SATA port when adding a second NVME drive. To fix this I used a passive m.2 to PCIe board [from Aliexpress](https://www.aliexpress.com/wholesale?SearchText=pci%20to%20m2).

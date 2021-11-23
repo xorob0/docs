@@ -102,13 +102,13 @@
   "lastOpenFiles": [
     "docs/celty/index.md",
     "docs/celty/host/hardware.md",
+    "docs/celty/host/story.md",
     "docs/celty/host/proxmox.md",
     "docs/celty/host/storage.md",
     "docs/celty/host/docker.md",
     "docs/celty/monitoring/cadvisor.md",
     "docs/celty/host/zfs.md",
     "docs/others/servers.md",
-    "docs/index.md",
-    "docs/nimbus/index.md"
+    "docs/index.md"
   ]
 }
