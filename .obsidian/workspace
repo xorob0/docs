@@ -9,8 +9,8 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "docs/celty/index.md",
-            "mode": "source"
+            "file": "docs/celty/host/zfs.md",
+            "mode": "preview"
           }
         }
       }
@@ -18,97 +18,82 @@
     "direction": "vertical"
   },
   "left": {
-    "id": "e52b95412db02379",
-    "type": "split",
+    "id": "2ee9f0e5b8b6b0f7",
+    "type": "mobile-drawer",
     "children": [
       {
-        "id": "6d49318fa32905b6",
-        "type": "tabs",
-        "children": [
-          {
-            "id": "fa6f4ecc39ad4af8",
-            "type": "leaf",
-            "state": {
-              "type": "file-explorer",
-              "state": {}
-            }
-          },
-          {
-            "id": "e01e58afa41bfd25",
-            "type": "leaf",
-            "state": {
-              "type": "search",
-              "state": {
-                "query": "",
-                "matchingCase": false,
-                "explainSearch": false,
-                "collapseAll": false,
-                "extraContext": false,
-                "sortOrder": "alphabetical"
-              }
-            }
+        "id": "dc7ee1f259ac4ad7",
+        "type": "leaf",
+        "state": {
+          "type": "file-explorer",
+          "state": {}
+        }
+      },
+      {
+        "id": "49d9ec0a8fcb5731",
+        "type": "leaf",
+        "state": {
+          "type": "search",
+          "state": {
+            "query": "",
+            "matchingCase": false,
+            "explainSearch": false,
+            "collapseAll": false,
+            "extraContext": false,
+            "sortOrder": "alphabetical"
           }
-        ]
+        }
       }
     ],
-    "direction": "horizontal",
-    "width": 300
+    "currentTab": 0
   },
   "right": {
-    "id": "48fba9f15baddcbc",
-    "type": "split",
+    "id": "00844e7093c684ec",
+    "type": "mobile-drawer",
     "children": [
       {
-        "id": "44af1a20aa9891f0",
-        "type": "tabs",
-        "children": [
-          {
-            "id": "6f26a4fe7ccdeba3",
-            "type": "leaf",
-            "state": {
-              "type": "backlink",
-              "state": {
-                "file": "docs/celty/index.md",
-                "collapseAll": false,
-                "extraContext": false,
-                "sortOrder": "alphabetical",
-                "showSearch": false,
-                "searchQuery": "",
-                "backlinkCollapsed": false,
-                "unlinkedCollapsed": true
-              }
-            }
-          },
-          {
-            "id": "59428cbc3299bcd9",
-            "type": "leaf",
-            "state": {
-              "type": "outgoing-link",
-              "state": {
-                "file": "docs/celty/index.md",
-                "linksCollapsed": false,
-                "unlinkedCollapsed": true
-              }
-            }
+        "id": "9c36e80af324be2f",
+        "type": "leaf",
+        "state": {
+          "type": "backlink",
+          "state": {
+            "file": "docs/celty/host/zfs.md",
+            "collapseAll": false,
+            "extraContext": false,
+            "sortOrder": "alphabetical",
+            "showSearch": false,
+            "searchQuery": "",
+            "backlinkCollapsed": false,
+            "unlinkedCollapsed": true
           }
-        ]
+        }
+      },
+      {
+        "id": "a560b671a4939509",
+        "type": "leaf",
+        "state": {
+          "type": "outgoing-link",
+          "state": {
+            "file": "docs/celty/host/zfs.md",
+            "linksCollapsed": false,
+            "unlinkedCollapsed": true
+          }
+        }
       }
     ],
-    "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "currentTab": 0
   },
   "active": "6569f3d8967717f4",
   "lastOpenFiles": [
-    "docs/celty/index.md",
-    "docs/celty/host/hardware.md",
+    "docs/celty/host/zfs.md",
     "docs/celty/host/story.md",
     "docs/celty/host/proxmox.md",
-    "docs/celty/host/storage.md",
     "docs/celty/host/docker.md",
+    "docs/nimbus/monitoring/cadvisor.md",
+    "docs/celty/host/storage.md",
     "docs/celty/monitoring/cadvisor.md",
-    "docs/celty/host/zfs.md",
-    "docs/others/servers.md",
-    "docs/index.md"
+    "docs/nimbus/host/docker.md",
+    "docs/nimbus/host/debian.md",
+    "docs/nimbus/monitoring/blackhole.md"
   ]
 }
