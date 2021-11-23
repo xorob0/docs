@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "docs/index.md",
+            "file": "docs/0_overview/index.md",
             "mode": "source"
           }
         }
@@ -68,7 +68,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "docs/index.md",
+                "file": "docs/0_overview/index.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -85,7 +85,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "docs/index.md",
+                "file": "docs/0_overview/index.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -100,7 +100,7 @@
   },
   "active": "6569f3d8967717f4",
   "lastOpenFiles": [
-    "docs/index.md",
+    "docs/0_overview/index.md",
     "docs/tinker/index.md",
     "docs/celty/zfs.md",
     "docs/celty/template.md",
