@@ -7,7 +7,7 @@ hide:
 # Overview
 Welcome to the documentation for my infrastructure. Here you will find information, setups and examples about my project.
 
-Some parts may be redacted, so expect a few 404 here and there. But if you need more information on anything on here feel free to contact me at xorob0@posteo.net
+Some parts may be redacted, so expect a few 404 here and there. But if you need more information on anything feel free to contact me at [xorob0@posteo.net](mailto:xorob0@posteo.net)
 
 You will find documentation for my servers:
 
