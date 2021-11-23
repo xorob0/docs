@@ -2,32 +2,11 @@
 
 
 
-# Hard Drives
-
-I currently have 6 hard drives in this box:
-
-- 2\*4To
-- 2\*6To
-- 1\*12To
-- 1\*480Go SSD
-
-I am now saturating my motherboard's SATA connectors, which is not a good thing.
 
 # Software
 
 ## Story
 
-The Software side of things had a lot more iterations than the hardware side.
-
-Back on my Raspberry Pi I was on Open Media Vault and really didn't like it. Every update broke the system, but I didn't have a lot of experience back then so that may be my fault too 🤷.
-
-On Celty I used FreeNAS for a long time. Back in the days it was basically the only way to have ZFS with good performances. I kept FreeNAS for a few years until the release of [OpenZFS](https://github.com/openzfs/zfs) 2.0.0 which made it possible to move to Linux.
-
-At that time I a friend was setting up his server with OMV and docker and the simply of docker really intrigued me. That's why on December 2020 I moved to Ubuntu 20.04 with docker and [OpenZFS](https://github.com/openzfs/zfs). I loved it even if the [OpenZFS](https://github.com/openzfs/zfs) setup was quite messy because it was not yet officially supported by Ubuntu.
-
-A few weeks later I upgraded my hardware and kind of broke my install. I decided to go with [Proxmox VE](https://www.proxmox.com/en/proxmox-ve) as it was supposed to have a really up to date [OpenZFS](https://github.com/openzfs/zfs) version. I discovered this was false and had to install the beta kernel to have it working.
-
-On my latest setup I tried [TrueNAS SCALE](https://www.truenas.com/truenas-scale/) which just lacks too much docker features for me at the moment and Ubuntu server which I dumped because it doesn't support root on ZFS right now.
 
 ## Current config
 
