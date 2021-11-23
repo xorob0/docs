@@ -11,7 +11,7 @@ It was initially in my bedroom, about 2 meters from my bed when I was lived with
 It runs [Proxmox](proxmox.md), mainly because its one of the few server distro that allow for root on [ZFS](celty/zfs) in the installer. I might use some of the VM capability one day, but for the moment everything runs on [Docker](docs/celty/host/docker.md) straight from the host.
 
 It's named after Celty Sturluson, a character from [Durarara!!](https://en.wikipedia.org/wiki/Durarara!!) who is black, mute, rides a noise-less bike and is literally headless.
-![Season 1](https://static.wikia.nocookie.net/durarara/images/e/e0/Celty.png/revision/latest/scale-to-width-down/350?cb=20190109214031)
+![Celty Sturluson from Durarara](../assets/Celty.png)
 
 ### Nimbus
 
@@ -51,4 +51,4 @@ It's running Ubuntu Server and not Home Assistant OS. This is because I wanted m
 
 It's named after AIDA from Agent of Shield, a robot that read the Darkhold and became an overpowered evil AI trying to become human.
 
-![Picture of AIDA from Agents of Shield](https://static.wikia.nocookie.net/marvelcinematicuniverse/images/2/27/Uprising_10.jpg/revision/latest/scale-to-width-down/1000?cb=20160928031550)
+![Picture of AIDA from Agents of Shield](../assets/AIDA.jpg)

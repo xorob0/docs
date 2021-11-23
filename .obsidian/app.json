@@ -1,0 +1,14 @@
+{
+  "alwaysUpdateLinks": true,
+  "vimMode": true,
+  "spellcheck": true,
+  "strictLineBreaks": false,
+  "foldHeading": true,
+  "foldIndent": true,
+  "showLineNumber": true,
+  "emacsyKeys": false,
+  "newFileLocation": "current",
+  "newLinkFormat": "relative",
+  "useMarkdownLinks": true,
+  "showUnsupportedFiles": true
+}
