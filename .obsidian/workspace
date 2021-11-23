@@ -1,16 +1,16 @@
 {
   "main": {
-    "id": "3c3d317110a9c497",
+    "id": "ae297b3add8625bf",
     "type": "split",
     "children": [
       {
-        "id": "6569f3d8967717f4",
+        "id": "be20e92db8544953",
         "type": "leaf",
         "state": {
           "type": "markdown",
           "state": {
-            "file": "docs/0_overview/index.md",
-            "mode": "source"
+            "file": "docs/nimbus/monitoring/blackhole.md",
+            "mode": "preview"
           }
         }
       }
@@ -18,97 +18,82 @@
     "direction": "vertical"
   },
   "left": {
-    "id": "e52b95412db02379",
-    "type": "split",
+    "id": "9ba6b78b1c81e25c",
+    "type": "mobile-drawer",
     "children": [
       {
-        "id": "6d49318fa32905b6",
-        "type": "tabs",
-        "children": [
-          {
-            "id": "fa6f4ecc39ad4af8",
-            "type": "leaf",
-            "state": {
-              "type": "file-explorer",
-              "state": {}
-            }
-          },
-          {
-            "id": "e01e58afa41bfd25",
-            "type": "leaf",
-            "state": {
-              "type": "search",
-              "state": {
-                "query": "",
-                "matchingCase": false,
-                "explainSearch": false,
-                "collapseAll": false,
-                "extraContext": false,
-                "sortOrder": "alphabetical"
-              }
-            }
+        "id": "274e65ba163a645e",
+        "type": "leaf",
+        "state": {
+          "type": "file-explorer",
+          "state": {}
+        }
+      },
+      {
+        "id": "4140f6bb54b7b357",
+        "type": "leaf",
+        "state": {
+          "type": "search",
+          "state": {
+            "query": "",
+            "matchingCase": false,
+            "explainSearch": false,
+            "collapseAll": false,
+            "extraContext": false,
+            "sortOrder": "alphabetical"
           }
-        ]
+        }
       }
     ],
-    "direction": "horizontal",
-    "width": 300
+    "currentTab": 0
   },
   "right": {
-    "id": "48fba9f15baddcbc",
-    "type": "split",
+    "id": "934bf028da75ecab",
+    "type": "mobile-drawer",
     "children": [
       {
-        "id": "44af1a20aa9891f0",
-        "type": "tabs",
-        "children": [
-          {
-            "id": "6f26a4fe7ccdeba3",
-            "type": "leaf",
-            "state": {
-              "type": "backlink",
-              "state": {
-                "file": "docs/0_overview/index.md",
-                "collapseAll": false,
-                "extraContext": false,
-                "sortOrder": "alphabetical",
-                "showSearch": false,
-                "searchQuery": "",
-                "backlinkCollapsed": false,
-                "unlinkedCollapsed": true
-              }
-            }
-          },
-          {
-            "id": "59428cbc3299bcd9",
-            "type": "leaf",
-            "state": {
-              "type": "outgoing-link",
-              "state": {
-                "file": "docs/0_overview/index.md",
-                "linksCollapsed": false,
-                "unlinkedCollapsed": true
-              }
-            }
+        "id": "a01188e79d58b108",
+        "type": "leaf",
+        "state": {
+          "type": "backlink",
+          "state": {
+            "file": "docs/nimbus/monitoring/blackhole.md",
+            "collapseAll": false,
+            "extraContext": false,
+            "sortOrder": "alphabetical",
+            "showSearch": false,
+            "searchQuery": "",
+            "backlinkCollapsed": false,
+            "unlinkedCollapsed": true
           }
-        ]
+        }
+      },
+      {
+        "id": "c2458a1a8aa796e9",
+        "type": "leaf",
+        "state": {
+          "type": "outgoing-link",
+          "state": {
+            "file": "docs/nimbus/monitoring/blackhole.md",
+            "linksCollapsed": false,
+            "unlinkedCollapsed": true
+          }
+        }
       }
     ],
-    "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "currentTab": 0
   },
-  "active": "6569f3d8967717f4",
+  "active": "be20e92db8544953",
   "lastOpenFiles": [
+    "docs/nimbus/monitoring/blackhole.md",
+    "docs/0_overview/zfs.md",
     "docs/0_overview/index.md",
     "docs/tinker/index.md",
-    "docs/celty/zfs.md",
-    "docs/celty/template.md",
+    "docs/0_overview/template.md",
     "docs/overview/index.md",
-    "docs/celty/servers.md",
+    "docs/0_overview/servers.md",
     "docs/overview/homenetwork.md",
     "docs/overview/docker.md",
-    "docs/nimbus/index.md",
-    "docs/celty/index.md"
+    "docs/nimbus/index.md"
   ]
 }
