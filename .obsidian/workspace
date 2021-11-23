@@ -101,13 +101,14 @@
   "active": "6569f3d8967717f4",
   "lastOpenFiles": [
     "docs/index.md",
-    "docs/secret.s.md",
-    "docs/overview/zfs.md",
-    "docs/overview/template.md",
-    "docs/overview/servers.md",
+    "docs/tinker/index.md",
+    "docs/celty/zfs.md",
+    "docs/celty/template.md",
     "docs/overview/index.md",
+    "docs/celty/servers.md",
     "docs/overview/homenetwork.md",
     "docs/overview/docker.md",
-    "docs/license.md"
+    "docs/nimbus/index.md",
+    "docs/celty/index.md"
   ]
 }
