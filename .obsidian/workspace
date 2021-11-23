@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "docs/overview/index.md",
+            "file": "docs/index.md",
             "mode": "source"
           }
         }
@@ -68,7 +68,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "docs/overview/index.md",
+                "file": "docs/index.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -85,7 +85,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "docs/overview/index.md",
+                "file": "docs/index.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -100,15 +100,14 @@
   },
   "active": "6569f3d8967717f4",
   "lastOpenFiles": [
-    "docs/overview/index.md",
-    "docs/overview/docker.md",
-    "docs/secret.s.md",
     "docs/index.md",
-    "docs/license.md",
+    "docs/secret.s.md",
+    "docs/overview/zfs.md",
+    "docs/overview/template.md",
     "docs/overview/servers.md",
-    "docs/assets/AIDA.jpg",
-    "docs/assets/Celty.png",
-    "README.md",
-    "2021-11-22-22-49-26.png"
+    "docs/overview/index.md",
+    "docs/overview/homenetwork.md",
+    "docs/overview/docker.md",
+    "docs/license.md"
   ]
 }
