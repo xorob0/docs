@@ -7,10 +7,9 @@
         "id": "6569f3d8967717f4",
         "type": "leaf",
         "state": {
-          "type": "markdown",
+          "type": "image",
           "state": {
-            "file": "docs/AIDA/index.md",
-            "mode": "source"
+            "file": "docs/assets/hetzner_nimbus_specs_screenshot.png"
           }
         }
       }
@@ -68,7 +67,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "docs/AIDA/index.md",
+                "file": "docs/assets/hetzner_nimbus_specs_screenshot.png",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -85,7 +84,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "docs/AIDA/index.md",
+                "file": "docs/assets/hetzner_nimbus_specs_screenshot.png",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -100,15 +99,15 @@
   },
   "active": "6569f3d8967717f4",
   "lastOpenFiles": [
+    "docs/assets/hetzner_nimbus_specs_screenshot.png",
+    "docs/nimbus/index.md",
+    "docs/index.md",
+    "docs/secret.s.md",
     "docs/AIDA/index.md",
     "docs/others/servers.md",
     "docs/others/zfs.md",
     "docs/tinker/index.md",
     "docs/others/template.md",
-    "docs/nimbus/index.md",
-    "docs/celty/index.md",
-    "docs/celty/services/torrents.md",
-    "docs/celty/services/tautulli.md",
-    "docs/celty/services/sonarr.md"
+    "docs/celty/index.md"
   ]
 }
