@@ -16,11 +16,11 @@ https://blog.galt.me/nebula-mesh-vpn-on-ubuntu/
 ## Create a certificate
 
 ```
-./nebula-cert sign -name "lighthouse" -ip "10.200.0.1/24"
+./nebula-cert sign -name "nimbus" -ip "10.200.0.1/24"
 
 ./nebula-cert sign -name "macbook" -ip "10.200.0.2/24" -groups "laptop,home,ssh"
 ./nebula-cert sign -name "iphone" -ip "10.200.0.3/24" -groups "mobile,home,ssh"
-./nebula-cert sign -name "celty" -ip "10.200.0.2/24" -groups "laptop,home,ssh"
-
+./nebula-cert sign -name "celty" -ip "10.200.0.2/24" -groups "server,home,ssh"
+./nebula-cert sign -name "aida" -ip "10.200.0.2/24" -groups "server,home,ssh"
 
 ```
