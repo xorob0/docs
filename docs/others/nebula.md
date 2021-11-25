@@ -27,3 +27,31 @@ https://blog.galt.me/nebula-mesh-vpn-on-ubuntu/
 ```
 
 edit `config.yml`
+
+## Setups
+### Linux
+nebula.sh
+```bash
+#!/bin/bash
+
+/opt/nebula/nebula -config /opt/nebula/config.yml
+```
+/etc/systemd/system/nebula-start.service
+```bash
+[Unit]  
+Description=Start Nebula Mesh VPN as a service.  
+[Service]  
+Type=simple  
+ExecStart=/bin/bash /home/root/nebula-start.sh  
+[Install]  
+WantedBy=multi-user.target
+```
+```
+sudo chmod 644 /etc/systemd/system/nebula-start.service
+sudo systemctl daemon-reload
+sudo systemctl enable nebula-start.service
+sudo systemctl start nebula-start.service
+sudo systemctl status nebula-start.service
+```
+### MacOS
+Put your `crt` and `key` files in `/opt/nebula`
