@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "docs/tinker/services/nextcloud.md",
+            "file": "docs/celty/services/torrents.md",
             "mode": "source"
           }
         }
@@ -68,7 +68,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "docs/tinker/services/nextcloud.md",
+                "file": "docs/celty/services/torrents.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -85,7 +85,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "docs/tinker/services/nextcloud.md",
+                "file": "docs/celty/services/torrents.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -100,15 +100,15 @@
   },
   "active": "6569f3d8967717f4",
   "lastOpenFiles": [
-    "docs/tinker/services/nextcloud.md",
-    "docs/tinker/services/caddy.md",
-    "docs/tinker/services/adguard.md",
-    "docs/others/services/dns.md",
-    "docs/others/services/watchtower.md",
-    "docs/others/services/portaineragent.md",
-    "docs/others/zfs.md",
+    "docs/celty/services/torrents.md",
+    "docs/celty/services/tautulli.md",
+    "docs/celty/services/sonarr.md",
+    "docs/celty/services/radarr.md",
+    "docs/celty/services/minio.md",
+    "docs/celty/services/calibre.md",
+    "docs/celty/services/caddy.md",
+    "docs/celty/index.md",
     "docs/celty/host/zfs.md",
-    "docs/others/template.md",
-    "docs/others/servers.md"
+    "docs/celty/host/storage.md"
   ]
 }
