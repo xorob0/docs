@@ -9,8 +9,8 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "docs/others/nebula.md",
-            "mode": "source"
+            "file": "docs/nimbus/host/nebula.s.md",
+            "mode": "preview"
           }
         }
       }
@@ -68,7 +68,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "docs/others/nebula.md",
+                "file": "docs/nimbus/host/nebula.s.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -85,7 +85,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "docs/others/nebula.md",
+                "file": "docs/nimbus/host/nebula.s.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -100,15 +100,15 @@
   },
   "active": "6569f3d8967717f4",
   "lastOpenFiles": [
+    "docs/nimbus/host/nebula.s.md",
     "docs/others/nebula.md",
+    "docs/nebula/Untitled.md",
+    "docs/celty/Untitled.md",
     "docs/celty/services/torrents.md",
     "docs/celty/services/tautulli.md",
     "docs/celty/services/sonarr.md",
     "docs/celty/services/radarr.md",
     "docs/celty/services/minio.md",
-    "docs/celty/services/calibre.md",
-    "docs/celty/services/caddy.md",
-    "docs/celty/index.md",
-    "docs/celty/host/zfs.md"
+    "docs/celty/services/calibre.md"
   ]
 }
