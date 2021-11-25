@@ -4,9 +4,9 @@ Nimbus is a VPS, hosted on [Hetzner](https://hetzner.com/). It's the cheapest VP
 
 I went with a VPS over a true selfhosted solution for the better availability. More and more people around me depend on my services so I need some reliability.
 
-[[hetzner_nimbus_specs_screenshot.png]]
+![Screenshot of my VPS setup on Hetzner](../assets/hetzner_nimbus_specs_screenshot.png)
 
 It runs ubuntu server and docker for the few services on there.
 
 It's named Nimbus because it's in the cloud.
-TODO: picture of nimbus from dragon ball
+![Screenshot of Dragon Ball showing Ni](../assets/dragon-ball-nimbus.jpeg)

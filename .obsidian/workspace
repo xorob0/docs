@@ -7,9 +7,10 @@
         "id": "6569f3d8967717f4",
         "type": "leaf",
         "state": {
-          "type": "image",
+          "type": "markdown",
           "state": {
-            "file": "docs/assets/hetzner_nimbus_specs_screenshot.png"
+            "file": "docs/nimbus/index.md",
+            "mode": "source"
           }
         }
       }
@@ -67,7 +68,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "docs/assets/hetzner_nimbus_specs_screenshot.png",
+                "file": "docs/nimbus/index.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -84,7 +85,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "docs/assets/hetzner_nimbus_specs_screenshot.png",
+                "file": "docs/nimbus/index.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -99,8 +100,8 @@
   },
   "active": "6569f3d8967717f4",
   "lastOpenFiles": [
-    "docs/assets/hetzner_nimbus_specs_screenshot.png",
     "docs/nimbus/index.md",
+    "docs/assets/hetzner_nimbus_specs_screenshot.png",
     "docs/index.md",
     "docs/secret.s.md",
     "docs/AIDA/index.md",
