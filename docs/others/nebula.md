@@ -2,6 +2,8 @@
 
 ## Install on ubuntu
 ```sh
+mkdir /opt/nebula
+cd /opt/nebula
 wget https://github.com/slackhq/nebula/releases/download/v1.2.0/nebula-linux-amd64.tar.gz
 sudo mkdir /opt/nebula
 sudo tar -C /opt/nebula -xvf nebula-linux-amd64.tar.gz
@@ -30,6 +32,15 @@ edit `config.yml`
 
 ## Setups
 ### Linux
+Install with:
+```bash
+mkdir /opt/nebula
+cd /opt/nebula
+wget https://github.com/slackhq/nebula/releases/download/v1.2.0/nebula-linux-amd64.tar.gz
+sudo mkdir /opt/nebula
+sudo tar -C /opt/nebula -xvf nebula-linux-amd64.tar.gz
+sudo ufw allow 4242/udp
+```
 nebula.sh
 ```bash
 #!/bin/bash
@@ -55,3 +66,31 @@ sudo systemctl status nebula-start.service
 ```
 ### MacOS
 Put your `crt` and `key` files in `/opt/nebula`
+
+/Library/LaunchAgents/nebula.plist
+```plist
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.nebula.startup</string>
+
+    <key>OnDemand</key>
+    <false/>
+
+    <key>LaunchOnlyOnce</key>
+    <true/>
+
+    <key>UserName</key>
+    <string>xorob0</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/usr/local/bin/nebula</string>
+        <string>-config</string>
+        <string>/opt/config.yml</string>
+    </array>
+</dict>
+</plist>
+```
