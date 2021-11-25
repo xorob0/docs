@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "docs/others/zfs.md",
+            "file": "docs/tinker/services/nextcloud.md",
             "mode": "source"
           }
         }
@@ -68,7 +68,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "docs/others/zfs.md",
+                "file": "docs/tinker/services/nextcloud.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -85,7 +85,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "docs/others/zfs.md",
+                "file": "docs/tinker/services/nextcloud.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -100,15 +100,15 @@
   },
   "active": "6569f3d8967717f4",
   "lastOpenFiles": [
+    "docs/tinker/services/nextcloud.md",
+    "docs/tinker/services/caddy.md",
+    "docs/tinker/services/adguard.md",
+    "docs/others/services/dns.md",
+    "docs/others/services/watchtower.md",
+    "docs/others/services/portaineragent.md",
     "docs/others/zfs.md",
     "docs/celty/host/zfs.md",
     "docs/others/template.md",
-    "docs/others/servers.md",
-    "docs/others/index.md",
-    "docs/nimbus/others/watchtower.md",
-    "docs/monitoring/blackhole.md",
-    "docs/nimbus/monitoring/node.md",
-    "docs/nimbus/monitoring/cadvisor.md",
-    "docs/celty/others/watchtower.md"
+    "docs/others/servers.md"
   ]
 }
