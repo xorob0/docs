@@ -9,4 +9,4 @@ I went with a VPS over a true selfhosted solution for the better availability. M
 It runs ubuntu server and docker for the few services on there.
 
 It's named Nimbus because it's in the cloud.
-![Screenshot of Dragon Ball showing Ni](../assets/dragon-ball-nimbus.jpeg)
+![Screenshot of Dragon Ball showing Nimbus](../assets/dragon-ball-nimbus.jpeg)
