@@ -7,7 +7,9 @@ sudo mkdir /opt/nebula
 sudo tar -C /opt/nebula -xvf nebula-linux-amd64.tar.gz
 sudo ufw allow 4242/udp
 cd /opt/nebula
+chmod +x nebula-cert
 ./nebula-cert ca -name "Managment network"
+wget https://raw.githubusercontent.com/slackhq/nebula/master/examples/config.yml
 ```
 
 Source:
@@ -24,4 +26,4 @@ https://blog.galt.me/nebula-mesh-vpn-on-ubuntu/
 ./nebula-cert sign -name "aida" -ip "10.200.0.5/24" -groups "server,home,ssh"
 ```
 
-edit `co
+edit `config.yml`
