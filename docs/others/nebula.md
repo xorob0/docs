@@ -67,7 +67,7 @@ sudo systemctl status nebula-start.service
 ### MacOS
 Put your `crt` and `key` files in `/opt/nebula`
 
-/Library/LaunchAgents/nebula.plist
+/Library/LaunchAgents/nebula.startup.plist
 ```plist
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -93,4 +93,9 @@ Put your `crt` and `key` files in `/opt/nebula`
     </array>
 </dict>
 </plist>
+```
+Then do
+```bash
+sudo chown root:wheel /Library/LaunchAgents/nebula.startup.plist
+sudo launchctl load /Library/LaunchAgents/nebula.startup.plist
 ```
