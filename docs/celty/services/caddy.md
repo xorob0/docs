@@ -33,45 +33,109 @@ I just need to expose every port I want to use in in the `ports` section.
 
 (nobots) {
   @bot {
-    header_regexp User-Agent Googlebot|aolbuild|baidu|bingbod|bingpreview|msnbot|duckduckbot|googlebot|adbot-google|mediapartners-google|teoma|slurp|yandex
+    header_regexp User-Agent Googlebot|aolbuild|baidu|bingbod|bingpreview|msnbot|duckduckbot|googlebot|adbot-google|mediapartners-google|teoma|slurp|yandex|Indy*Library|libwww-perl|GetRight|GetWeb!|Go!Zilla|Download*Demon|Go-Ahead-Got-It|TurnitinBot|GrabNet
   }
+
+  @badwords {
+    path_regexp \b(ultram|unicauca|valium|viagra|vicodin|xanax|ypxaieo|erections|hoodia|huronriveracres|impotence|levitra|libido|ambien|blue\spill|cialis|cocaine|ejaculation|erectile|lipitor|phentermin|pro[sz]ac|sandyauer|tramadol|troyhamby)\b
+  }
+
+  @sql {
+    path_regexp \b(union.*select.*\(|union.*all.*select.*|concat.*\()\b
+  }
+
+  @block {
+    path_regexp \b([a-zA-Z0-9_]=http://|[a-zA-Z0-9_]=(\.\.//?)+|[a-zA-Z0-9_]=/([a-z0-9_.]//?)+)\b
+  }
+
+  @exploits {
+    path_regexp \b((<|%3C).*script.*(>|%3E)|GLOBALS(=|\[|\%[0-9A-Z]{0,2})|_REQUEST(=|\[|\%[0-9A-Z]{0,2})|proc/self/environ|mosConfig_[a-zA-Z_]{1,21}(=|\%3D)|base64_(en|de)code\(.*\))\b
+ }
+
   respond @bot 403 {
     body "Not dank enough"
     close
   }
+  respond @badwords 403 {
+    body "Not dank enough"
+    close
+  }
+  respond @sql 403 {
+    body "Not dank enough"
+    close
+  }
+  respond @block 403 {
+    body "Not dank enough"
+    close
+  }
+  respond @exploits 403 {
+    body "Not dank enough"
+    close
+  }
+
+  header Permissions-Policy "interest-cohort=()"
+
   respond /robots.txt 200 {
     body "User-agent: *
     Disallow: /"
   }
 }
 
-(private) {
+(management) {
   @external {
-     not remote_ip 192.168.0.0/16 172.16.0.0/12 10.0.0.0/8 81.243.19.142
+     not remote_ip 10.200.0.0/24
   }
-  respond @external 403 {
-    body "Only available on local network"
+  respond @external 503 {
+    body "Server is having issues"
   }
+  tls internal
 }
 
-metrics.gneee.tech {
+caddy.celty {
   metrics /metrics
-  import nobots
-  import private
+  import management
 }
-torrents.gneee.tech {
+cadvisor.celty {
+  reverse_proxy {
+    to cadvisor:8080
+  }
+  import management
+}
+nodeexporter.celty {
+  reverse_proxy {
+    to nodeexporter:9100
+  }
+  import management
+}
+nodeexporter.bifrost {
+  reverse_proxy {
+    to 192.168.2.1:9100
+  }
+  import management
+}
+cadvisor.aida {
+  reverse_proxy {
+    to 192.168.2.65:8080
+  }
+  import management
+}
+nodeexporter.aida {
+  reverse_proxy {
+    to 192.168.2.65:9100
+  }
+  import management
+}
+torrents.celty {
   reverse_proxy {
     to flood:3000
   }
-  import nobots
-  import private
+  import management
 }
-ugly.torrents.gneee.tech {
+ugly.torrents.celty {
   reverse_proxy {
     to qbittorrent:8080
   }
-  import nobots
-  import private
+  import management
 }
 s3.gneee.tech {
   reverse_proxy {
@@ -79,125 +143,33 @@ s3.gneee.tech {
   }
   import nobots
 }
-syncthing.gneee.tech {
-  reverse_proxy {
-    to 192.168.188.101:8384
-  }
-  import nobots
-  import private
-}
-radarr.gneee.tech {
+radarr.celty {
   reverse_proxy {
     to radarr:7878
   }
-  import nobots
+  import management
 }
-sonarr.gneee.tech {
+sonarr.celty {
   reverse_proxy {
     to sonarr:8989
   }
-  import nobots
+  import management
 }
-jackett.gneee.tech {
+lidarr.celty {
   reverse_proxy {
-    to jackett:9117
+    to lidarr:8686
   }
-  import nobots
-  import private
+  import management
 }
-dns.gneee.tech {
+print.celty {
   reverse_proxy {
-    to adguard:444
+    to 192.168.2.37:80
   }
-  import nobots
-}
-admin.dns.gneee.tech {
-  reverse_proxy {
-    to adguard:3000
-  }
-  import nobots
-  import private
-}
-matrix.gneee.tech {
-  reverse_proxy {
-    to 192.168.188.101:8008
-  }
-  import nobots
-}
-gneee.tech:8448 {
-  reverse_proxy {
-    to 192.168.188.101:8008
-  }
-  import nobots
-}
-portainer.gneee.tech {
-  reverse_proxy {
-    to 192.168.188.101:9000
-  }
-  import nobots
-  import private
-}
-proxmox.gneee.tech {
-  reverse_proxy {
-    to 192.168.188.101:8006
-  }
-  import nobots
-  import private
-}
-fritz.gneee.tech {
-  reverse_proxy {
-    to 192.168.188.1
-  }
-  import nobots
-  import private
-}
-stats.gneee.tech {
-  reverse_proxy {
-    to 192.168.188.101:3000
-  }
-  import nobots
-}
-print.gneee.tech {
-  reverse_proxy {
-    to 192.168.188.40:80
-  }
-  import nobots
-  import private
-}
-ombi.gneee.tech {
-  reverse_proxy {
-    to ombi:3579
-  }
-  import nobots
-}
-code.gneee.tech {
-  reverse_proxy {
-    to vscode:8080
-  }
-  import nobots
-  import private
-}
-assistant.gneee.tech {
-  reverse_proxy {
-    to 192.168.188.32:8000
-  }
-  import nobots
+  import management
 }
 linx.gneee.tech {
   reverse_proxy {
     to linx-server:8080
-  }
-  import nobots
-}
-cloud.gneee.tech {
-  reverse_proxy {
-    to nextcloud:80
-  }
-  import nobots
-}
-photos.gneee.tech {
-  reverse_proxy {
-    to http://192.168.188.101:1231
   }
   import nobots
 }
@@ -207,36 +179,47 @@ plex.gneee.tech {
   }
   import nobots
 }
-rss.gneee.tech {
-  reverse_proxy {
-    to miniflux:8080
-  }
-  import nobots
-}
-gneee.tech {
-  reverse_proxy {
-    to organizr:80
-  }
-  import nobots
-}
-organizr.gneee.tech {
-  reverse_proxy {
-    to organizr:80
-  }
-  import nobots
-}
-bazarr.gneee.tech {
+bazarr.celty {
   reverse_proxy {
     to bazarr:6767
   }
-  import nobots
+  import management
 }
-tautulli.gneee.tech {
+tautulli.celty {
   reverse_proxy {
     to tautulli:8181
   }
-  import nobots
-  import private
+  import management
+}
+ebooks.celty {
+  reverse_proxy {
+    to calibre-web:8083
+  }
+  import management
+}
+calibre.celty {
+  reverse_proxy {
+    to calibre:8080
+  }
+  import management
+}
+dupeguru.celty {
+  reverse_proxy {
+    to dupeguru:5800
+  }
+  import management
+}
+photos.celty {
+  reverse_proxy {
+    to librephotos:80
+  }
+  import management
+}
+cloud.celty {
+  reverse_proxy {
+    to nextcloud:80
+  }
+  import management
 }
 ```
 As much as possible I try to use docker's hostnames, this make this setup really portable and easy to maintain.
@@ -245,39 +228,78 @@ As much as possible I try to use docker's hostnames, this make this setup really
 
 #### No bots
 
-I wrote a small rule that can help decrease the risks of being indexed or scanned by script kiddies on every subdomains.
+I wrote a few rules that can help decrease the risks of being indexed or scanned by script kiddies on every subdomains.
+They are inspired from the nginx no bot config.
 
 ```
 (nobots) {
   @bot {
-    header_regexp User-Agent Googlebot|aolbuild|baidu|bingbod|bingpreview|msnbot|duckduckbot|googlebot|adbot-google|mediapartners-google|teoma|slurp|yandex
+    header_regexp User-Agent Googlebot|aolbuild|baidu|bingbod|bingpreview|msnbot|duckduckbot|googlebot|adbot-google|mediapartners-google|teoma|slurp|yandex|Indy*Library|libwww-perl|GetRight|GetWeb!|Go!Zilla|Download*Demon|Go-Ahead-Got-It|TurnitinBot|GrabNet
   }
+
+  @badwords {
+    path_regexp \b(ultram|unicauca|valium|viagra|vicodin|xanax|ypxaieo|erections|hoodia|huronriveracres|impotence|levitra|libido|ambien|blue\spill|cialis|cocaine|ejaculation|erectile|lipitor|phentermin|pro[sz]ac|sandyauer|tramadol|troyhamby)\b
+  }
+
+  @sql {
+    path_regexp \b(union.*select.*\(|union.*all.*select.*|concat.*\()\b
+  }
+
+  @block {
+    path_regexp \b([a-zA-Z0-9_]=http://|[a-zA-Z0-9_]=(\.\.//?)+|[a-zA-Z0-9_]=/([a-z0-9_.]//?)+)\b
+  }
+
+  @exploits {
+    path_regexp \b((<|%3C).*script.*(>|%3E)|GLOBALS(=|\[|\%[0-9A-Z]{0,2})|_REQUEST(=|\[|\%[0-9A-Z]{0,2})|proc/self/environ|mosConfig_[a-zA-Z_]{1,21}(=|\%3D)|base64_(en|de)code\(.*\))\b
+ }
+
   respond @bot 403 {
     body "Not dank enough"
     close
   }
+  respond @badwords 403 {
+    body "Not dank enough"
+    close
+  }
+  respond @sql 403 {
+    body "Not dank enough"
+    close
+  }
+  respond @block 403 {
+    body "Not dank enough"
+    close
+  }
+  respond @exploits 403 {
+    body "Not dank enough"
+    close
+  }
+
+  header Permissions-Policy "interest-cohort=()"
+
   respond /robots.txt 200 {
     body "User-agent: *
     Disallow: /"
   }
 }
-```
 
-What this does is answer with an error request made by common bots on every page and every subdomains.
-
-It also atomatically add a `/robots.txt` that tells indexers not to index any page of this website.
-
-#### Private
-
-To simplify maintanance I put some services on the reverse proxy I do not wish to access from outside my lan. This rule blocks access to those subdomains if the IP is not in my local network.
 
 ```
-(private) {
+
+These rules respond with error for commonly used bad word, exploit and for all bots (based on their user agent).
+It also automatically add a `/robots.txt` that tells indexers not to index any page of this website.
+
+#### Management
+
+For services that do not need to be accessed by other people I restrict access to only the IPs from my nebula setup. I also use a self signed tls to be able to use `.celty` domains.
+
+```
+(management) {
   @external {
-     not remote_ip 192.168.0.0/16
+     not remote_ip 10.200.0.0/24
   }
   respond @external 403 {
-    body "Only available on local network"
+    body "Not dank enough"
   }
+  tls internal
 }
 ```
