@@ -11,7 +11,7 @@ sudo ufw allow 4242/udp
 cd /opt/nebula
 chmod +x nebula-cert
 ./nebula-cert ca -name "Managment network"
-wget https://raw.githubusercontent.com/slackhq/nebula/master/examples/config.yml
+sudo wget https://raw.githubusercontent.com/slackhq/nebula/master/examples/config.yml
 ```
 
 Source:
