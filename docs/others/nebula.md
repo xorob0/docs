@@ -39,7 +39,6 @@ cd /opt/nebula
 wget https://github.com/slackhq/nebula/releases/download/v1.2.0/nebula-linux-amd64.tar.gz
 sudo mkdir /opt/nebula
 sudo tar -C /opt/nebula -xvf nebula-linux-amd64.tar.gz
-sudo ufw allow 4242/udp
 ```
 nebula.sh
 ```bash
@@ -53,10 +52,11 @@ nebula.sh
 Description=Start Nebula Mesh VPN as a service.  
 [Service]  
 Type=simple  
-ExecStart=/bin/bash /home/root/nebula-start.sh  
+ExecStart=/bin/bash /root/nebula.sh  
 [Install]  
 WantedBy=multi-user.target
 ```
+
 ```
 sudo chmod 644 /etc/systemd/system/nebula-start.service
 sudo systemctl daemon-reload
