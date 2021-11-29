@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "docs/celty/services/caddy.md",
+            "file": "docs/nimbus/host/nebula.s.md",
             "mode": "source"
           }
         }
@@ -68,7 +68,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "docs/celty/services/caddy.md",
+                "file": "docs/nimbus/host/nebula.s.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -85,7 +85,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "docs/celty/services/caddy.md",
+                "file": "docs/nimbus/host/nebula.s.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -100,15 +100,15 @@
   },
   "active": "6569f3d8967717f4",
   "lastOpenFiles": [
+    "docs/nimbus/host/nebula.s.md",
+    "docs/others/nebula.md",
+    "docs/others/caddy.s.md",
+    "docs/celty/host/nebula.s.md",
     "docs/celty/services/caddy.md",
     "docs/AIDA/nebula.md",
-    "docs/others/nebula.md",
     "docs/AIDA/nebula.s.md",
-    "docs/others/caddy.s.md",
     "docs/rocket/nebula.s.md",
-    "docs/celty/host/nebula.s.md",
     "docs/celty/host/zfs.md",
-    "docs/nimbus/host/nebula.s.md",
     "docs/nebula/Untitled.md"
   ]
 }
