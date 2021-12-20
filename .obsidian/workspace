@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "docs/others/nebula.md",
+            "file": "docs/nimbus/host/nebula.s.md",
             "mode": "preview"
           }
         }
@@ -68,7 +68,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "docs/others/nebula.md",
+                "file": "docs/nimbus/host/nebula.s.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -85,7 +85,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "docs/others/nebula.md",
+                "file": "docs/nimbus/host/nebula.s.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -100,8 +100,8 @@
   },
   "active": "6569f3d8967717f4",
   "lastOpenFiles": [
-    "docs/others/nebula.md",
     "docs/nimbus/host/nebula.s.md",
+    "docs/others/nebula.md",
     "docs/others/caddy.s.md",
     "docs/rocket/nebula.s.md",
     "docs/nimbus/host/docker.md",
