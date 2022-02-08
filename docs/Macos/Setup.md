@@ -4,6 +4,7 @@ This is just some notes I'll be taking while setting up my Macbook from scratch
 - [Magnet](https://apps.apple.com/us/app/magnet/id441258766?mt=12)
 - [Karabiner](https://karabiner-elements.pqrs.org/)
 - [HazeOver](https://apps.apple.com/be/app/hazeover-distraction-dimmer/id430798174?mt=12)
+- [iterm2](https://iterm2.com/)
 ## Others
 ### Key repeat rate
 ```
