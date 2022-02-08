@@ -1,3 +1,0 @@
-# AdGuard
-
-TODO
