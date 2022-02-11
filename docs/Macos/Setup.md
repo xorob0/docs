@@ -8,7 +8,7 @@ This is just some notes I'll be taking while setting up my Macbook from scratch
 ## Others
 ### Key repeat rate
 ```
-defaults write -g InitialKeyRepeat -int 7
+defaults write -g InitialKeyRepeat -int 10
 defaults write -g KeyRepeat -int 1
 defaults write -g ApplePressAndHoldEnabled -bool false
 ```
