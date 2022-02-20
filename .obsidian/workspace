@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "docs/celty/delete unlinked torrents.md",
+            "file": "docs/celty/index.md",
             "mode": "source",
             "source": false
           }
@@ -69,7 +69,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "docs/celty/delete unlinked torrents.md",
+                "file": "docs/celty/index.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -86,7 +86,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "docs/celty/delete unlinked torrents.md",
+                "file": "docs/celty/index.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -101,6 +101,7 @@
   },
   "active": "6569f3d8967717f4",
   "lastOpenFiles": [
+    "docs/celty/index.md",
     "docs/celty/delete unlinked torrents.md",
     "docs/Macos/Setup.md",
     "docs/Macos/nebula.md",
@@ -109,7 +110,6 @@
     "docs/nimbus/host/nebula.s.md",
     "docs/others/servers.md",
     "docs/others/index.md",
-    "docs/others/nebula.md",
-    "docs/celty/services/plex.md"
+    "docs/others/nebula.md"
   ]
 }
