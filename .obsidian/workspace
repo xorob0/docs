@@ -7,97 +7,76 @@
         "id": "6569f3d8967717f4",
         "type": "leaf",
         "state": {
-          "type": "markdown",
-          "state": {
-            "file": "docs/others/zfs.md",
-            "mode": "source",
-            "source": false
-          }
+          "type": "graph",
+          "state": {}
         }
       }
     ],
     "direction": "vertical"
   },
   "left": {
-    "id": "bfc085f3affff7bb",
-    "type": "split",
+    "id": "640aa385df7001bb",
+    "type": "mobile-drawer",
     "children": [
       {
-        "id": "5d1f6cffe8488acf",
-        "type": "tabs",
-        "children": [
-          {
-            "id": "e7e40ad12740f3e3",
-            "type": "leaf",
-            "state": {
-              "type": "file-explorer",
-              "state": {}
-            }
-          },
-          {
-            "id": "587ae45082c9f0c8",
-            "type": "leaf",
-            "state": {
-              "type": "search",
-              "state": {
-                "query": "",
-                "matchingCase": false,
-                "explainSearch": false,
-                "collapseAll": false,
-                "extraContext": false,
-                "sortOrder": "alphabetical"
-              }
-            }
+        "id": "affde7f0ad3dab2e",
+        "type": "leaf",
+        "state": {
+          "type": "file-explorer",
+          "state": {}
+        }
+      },
+      {
+        "id": "aa4bf8f0cf86d4bb",
+        "type": "leaf",
+        "state": {
+          "type": "search",
+          "state": {
+            "query": "",
+            "matchingCase": false,
+            "explainSearch": false,
+            "collapseAll": false,
+            "extraContext": false,
+            "sortOrder": "alphabetical"
           }
-        ]
+        }
       }
     ],
-    "direction": "horizontal",
-    "width": 300
+    "currentTab": 0
   },
   "right": {
-    "id": "f67940d6f40c5d84",
-    "type": "split",
+    "id": "ca5f3d0506f1989d",
+    "type": "mobile-drawer",
     "children": [
       {
-        "id": "075bbd6d2d6236df",
-        "type": "tabs",
-        "children": [
-          {
-            "id": "a4fee84595a857f9",
-            "type": "leaf",
-            "state": {
-              "type": "backlink",
-              "state": {
-                "file": "docs/others/zfs.md",
-                "collapseAll": false,
-                "extraContext": false,
-                "sortOrder": "alphabetical",
-                "showSearch": false,
-                "searchQuery": "",
-                "backlinkCollapsed": false,
-                "unlinkedCollapsed": true
-              }
-            }
-          },
-          {
-            "id": "ff458a16caa2c188",
-            "type": "leaf",
-            "state": {
-              "type": "outgoing-link",
-              "state": {
-                "file": "docs/others/zfs.md",
-                "linksCollapsed": false,
-                "unlinkedCollapsed": true
-              }
-            }
+        "id": "f5135b9d21ac9616",
+        "type": "leaf",
+        "state": {
+          "type": "backlink",
+          "state": {
+            "collapseAll": false,
+            "extraContext": false,
+            "sortOrder": "alphabetical",
+            "showSearch": false,
+            "searchQuery": "",
+            "backlinkCollapsed": false,
+            "unlinkedCollapsed": true
           }
-        ]
+        }
+      },
+      {
+        "id": "bcdcce1e5312aed6",
+        "type": "leaf",
+        "state": {
+          "type": "outgoing-link",
+          "state": {
+            "linksCollapsed": false,
+            "unlinkedCollapsed": true
+          }
+        }
       }
     ],
-    "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "currentTab": 0
   },
   "active": "6569f3d8967717f4",
   "lastOpenFiles": [
