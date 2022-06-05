@@ -10,5 +10,7 @@
     "Celty",
     "Celty",
     "selfhosted"
-  ]
+  ],
+  "legacyEditor": false,
+  "livePreview": true
 }
