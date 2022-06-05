@@ -4,10 +4,10 @@
     "type": "split",
     "children": [
       {
-        "id": "6569f3d8967717f4",
+        "id": "1ca80c3562902dbc",
         "type": "leaf",
         "state": {
-          "type": "graph",
+          "type": "empty",
           "state": {}
         }
       }
@@ -93,7 +93,7 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "6569f3d8967717f4",
+  "active": "1ca80c3562902dbc",
   "lastOpenFiles": [
     "docs/others/zfs.md",
     "docs/celty/delete unlinked torrents.md",
