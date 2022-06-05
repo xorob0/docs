@@ -90,14 +90,14 @@
   "active": "ce033fd9dc6eac44",
   "lastOpenFiles": [
     "Macos/Setup.md",
+    "tinker/index.md",
+    "tinker/services/nextcloud.md",
+    "tinker/services/caddy.md",
+    "tinker/services/adguard.md",
+    "tinker/host/ubuntu.md",
+    "tinker/host/raspberrypi.md",
+    "tinker/host/docker.md",
     "Macos/nebula.md",
-    "Macos/Untitled.md",
-    "Untitled.md",
-    "secret.md",
-    "overview/servers.md",
-    "overview/homenetwork.md",
-    "overview/docker.md",
-    "overview/zfs.md",
-    "celty/host/zfs.md"
+    "Macos/Untitled.md"
   ]
 }
