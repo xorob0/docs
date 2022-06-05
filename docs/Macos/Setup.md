@@ -12,3 +12,4 @@ defaults write -g InitialKeyRepeat -int 10
 defaults write -g KeyRepeat -int 1
 defaults write -g ApplePressAndHoldEnabled -bool false
 ```
+https://amanhimself.dev/blog/setup-macbook-m1/

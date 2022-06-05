@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Macos/nebula.md",
+            "file": "Macos/Setup.md",
             "mode": "source",
             "source": false
           }
@@ -69,7 +69,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Macos/nebula.md",
+                "file": "Macos/Setup.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -89,15 +89,15 @@
   },
   "active": "ce033fd9dc6eac44",
   "lastOpenFiles": [
+    "Macos/Setup.md",
     "Macos/nebula.md",
+    "Macos/Untitled.md",
     "Untitled.md",
     "secret.md",
     "overview/servers.md",
     "overview/homenetwork.md",
     "overview/docker.md",
     "overview/zfs.md",
-    "celty/host/zfs.md",
-    "index.md",
-    "license.md"
+    "celty/host/zfs.md"
   ]
 }
