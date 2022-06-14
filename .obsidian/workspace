@@ -7,8 +7,12 @@
         "id": "1ca80c3562902dbc",
         "type": "leaf",
         "state": {
-          "type": "empty",
-          "state": {}
+          "type": "markdown",
+          "state": {
+            "file": "docs/nimbus/host/nebula.s.md",
+            "mode": "source",
+            "source": false
+          }
         }
       }
     ],
@@ -65,6 +69,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "docs/nimbus/host/nebula.s.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -81,6 +86,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "docs/nimbus/host/nebula.s.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -95,15 +101,15 @@
   },
   "active": "1ca80c3562902dbc",
   "lastOpenFiles": [
-    "docs/others/zfs.md",
-    "docs/celty/delete unlinked torrents.md",
-    "docs/celty/index.md",
     "docs/nimbus/host/nebula.s.md",
     "docs/others/nebula.md",
-    "docs/Macos/Setup.md",
+    "docs/nimbus/host/VPS.md",
+    "docs/nimbus/host/debian.md",
     "docs/Macos/nebula.md",
+    "docs/Macos/Setup.md",
+    "docs/AIDA/nebula.md",
     "docs/celty/host/nebula.s.md",
-    "docs/rocket/nebula.s.md",
-    "docs/others/servers.md"
+    "docs/index.md",
+    "docs/nimbus/index.md"
   ]
 }
