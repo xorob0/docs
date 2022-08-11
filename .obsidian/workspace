@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "docs/nimbus/host/nebula.s.md",
+            "file": "docs/celty/delete unlinked torrents.md",
             "mode": "source",
             "source": false
           }
@@ -40,7 +40,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "find",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -49,7 +49,8 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -69,7 +70,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "docs/nimbus/host/nebula.s.md",
+                "file": "docs/celty/delete unlinked torrents.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -86,7 +87,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "docs/nimbus/host/nebula.s.md",
+                "file": "docs/celty/delete unlinked torrents.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -101,6 +102,7 @@
   },
   "active": "1ca80c3562902dbc",
   "lastOpenFiles": [
+    "docs/others/zfs.md",
     "docs/nimbus/host/nebula.s.md",
     "docs/others/nebula.md",
     "docs/nimbus/host/VPS.md",
@@ -109,7 +111,6 @@
     "docs/Macos/Setup.md",
     "docs/AIDA/nebula.md",
     "docs/celty/host/nebula.s.md",
-    "docs/index.md",
-    "docs/nimbus/index.md"
+    "docs/index.md"
   ]
 }
