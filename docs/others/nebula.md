@@ -27,6 +27,7 @@ https://blog.galt.me/nebula-mesh-vpn-on-ubuntu/
 ./nebula-cert sign -name "celty" -ip "10.200.0.4/24" -groups "server,home,ssh"
 ./nebula-cert sign -name "aida" -ip "10.200.0.5/24" -groups "server,home,ssh"
 ./nebula-cert sign -name "rocket" -ip "10.200.0.6/24" -groups "server,home,ssh"
+./nebula-cert sign -name "s22" -ip "10.200.0.8/24" -in-pub s22.pub -groups "server,home,ssh"
 ```
 
 edit `config.yml`

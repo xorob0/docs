@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "docs/celty/delete unlinked torrents.md",
+            "file": "docs/others/nebula.md",
             "mode": "source",
             "source": false
           }
@@ -69,7 +69,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "docs/celty/delete unlinked torrents.md",
+                "file": "docs/others/nebula.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -86,7 +86,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "docs/celty/delete unlinked torrents.md",
+                "file": "docs/others/nebula.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -99,17 +99,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "9b4a4bd22ec6f1d9",
+  "active": "1ca80c3562902dbc",
   "lastOpenFiles": [
-    "docs/others/zfs.md",
-    "docs/nimbus/host/nebula.s.md",
-    "docs/others/nebula.md",
-    "docs/nimbus/host/VPS.md",
-    "docs/nimbus/host/debian.md",
+    "docs/monitoring/blackhole.md",
     "docs/Macos/nebula.md",
-    "docs/Macos/Setup.md",
+    "docs/assets/AIDA.jpg",
     "docs/AIDA/nebula.md",
-    "docs/celty/host/nebula.s.md",
-    "docs/index.md"
+    "docs/nimbus/index.md",
+    "docs/nimbus/host/VPS.md",
+    "docs/nimbus/host/nebula.s.md",
+    "docs/others/servers.md",
+    "docs/others/index.md",
+    "docs/others/caddy.s.md"
   ]
 }
