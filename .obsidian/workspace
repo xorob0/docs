@@ -49,8 +49,7 @@
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -100,7 +99,7 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "1ca80c3562902dbc",
+  "active": "9b4a4bd22ec6f1d9",
   "lastOpenFiles": [
     "docs/others/zfs.md",
     "docs/nimbus/host/nebula.s.md",
