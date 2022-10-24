@@ -1,0 +1,126 @@
+{
+  "main": {
+    "id": "3c3d317110a9c497",
+    "type": "split",
+    "children": [
+      {
+        "id": "f02f3ff7fea406b0",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "1ca80c3562902dbc",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "docs/others/nebula.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "52f2328d6591b153",
+    "type": "split",
+    "children": [
+      {
+        "id": "45407dc3e4dee6b6",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "9b4a4bd22ec6f1d9",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "b75789157aac507c",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "find",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "5560ad462d1032f3",
+    "type": "split",
+    "children": [
+      {
+        "id": "a39d8d0727cbc9ac",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "dff8812fcfe03c4e",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "docs/others/nebula.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "be781c1feb5ccddf",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "docs/others/nebula.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "ribbon": {
+    "mostRecentAction": ""
+  },
+  "active": "1ca80c3562902dbc",
+  "lastOpenFiles": [
+    "docs/monitoring/blackhole.md",
+    "docs/Macos/nebula.md",
+    "docs/assets/AIDA.jpg",
+    "docs/AIDA/nebula.md",
+    "docs/nimbus/index.md",
+    "docs/nimbus/host/VPS.md",
+    "docs/nimbus/host/nebula.s.md",
+    "docs/others/servers.md",
+    "docs/others/index.md",
+    "docs/others/caddy.s.md"
+  ]
+}
