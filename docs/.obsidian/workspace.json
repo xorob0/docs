@@ -1,50 +1,35 @@
 {
   "main": {
-    "id": "3c3d317110a9c497",
+    "id": "4b1bbb278dfb19ef",
     "type": "split",
     "children": [
       {
-        "id": "f02f3ff7fea406b0",
+        "id": "9fb96bc782c64e38",
         "type": "tabs",
         "children": [
           {
-            "id": "1ca80c3562902dbc",
+            "id": "4d4ba95c59a665a5",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "docs/celty/delete unlinked torrents.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "20d9b35fe116ecb2",
-            "type": "leaf",
-            "state": {
-              "type": "release-notes",
-              "state": {
-                "currentVersion": "1.0.3"
-              }
+              "type": "empty",
+              "state": {}
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
   },
   "left": {
-    "id": "52f2328d6591b153",
+    "id": "24cb1cb3690f6db8",
     "type": "split",
     "children": [
       {
-        "id": "45407dc3e4dee6b6",
+        "id": "c8add0244cd2d015",
         "type": "tabs",
         "children": [
           {
-            "id": "9b4a4bd22ec6f1d9",
+            "id": "161cf5cd84d6730c",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -54,12 +39,12 @@
             }
           },
           {
-            "id": "b75789157aac507c",
+            "id": "88cbdda3f0a809ea",
             "type": "leaf",
             "state": {
               "type": "search",
               "state": {
-                "query": "find",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -75,38 +60,25 @@
     "width": 300
   },
   "right": {
-    "id": "5560ad462d1032f3",
+    "id": "db0f1434df4447f7",
     "type": "split",
     "children": [
       {
-        "id": "a39d8d0727cbc9ac",
+        "id": "cc3e4b8bedcd09f1",
         "type": "tabs",
         "children": [
           {
-            "id": "dff8812fcfe03c4e",
+            "id": "0e6f4ff1ef869b97",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-                "file": "docs/celty/delete unlinked torrents.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
                 "showSearch": false,
                 "searchQuery": "",
                 "backlinkCollapsed": false,
-                "unlinkedCollapsed": true
-              }
-            }
-          },
-          {
-            "id": "be781c1feb5ccddf",
-            "type": "leaf",
-            "state": {
-              "type": "outgoing-link",
-              "state": {
-                "file": "docs/celty/delete unlinked torrents.md",
-                "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
             }
@@ -127,17 +99,17 @@
       "markdown-importer:Open format converter": false
     }
   },
-  "active": "20d9b35fe116ecb2",
+  "active": "4d4ba95c59a665a5",
   "lastOpenFiles": [
-    "docs/others/zfs.md",
-    "docs/others/template.md",
-    "docs/others/servers.md",
-    "docs/others/nebula.md",
-    "docs/monitoring/blackhole.md",
-    "docs/Macos/nebula.md",
-    "docs/assets/AIDA.jpg",
-    "docs/AIDA/nebula.md",
-    "docs/nimbus/index.md",
-    "docs/nimbus/host/VPS.md"
+    "Macos/Setup.md",
+    "tinker/index.md",
+    "tinker/services/nextcloud.md",
+    "tinker/services/caddy.md",
+    "tinker/services/adguard.md",
+    "tinker/host/ubuntu.md",
+    "tinker/host/raspberrypi.md",
+    "tinker/host/docker.md",
+    "Macos/nebula.md",
+    "Macos/Untitled.md"
   ]
 }
