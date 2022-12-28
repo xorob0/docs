@@ -23,9 +23,11 @@
             "id": "20d9b35fe116ecb2",
             "type": "leaf",
             "state": {
-              "type": "release-notes",
+              "type": "markdown",
               "state": {
-                "currentVersion": "1.0.3"
+                "file": "docs/celty/delete unlinked torrents.md",
+                "mode": "source",
+                "source": false
               }
             }
           }
