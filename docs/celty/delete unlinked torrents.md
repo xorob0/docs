@@ -6,5 +6,5 @@ Replace `-print` by `-delete` to delete them
 
 Now you may want to delete all snapshots of `HDD1/Media` with this command:
 ```
-zfs list -H -o name -t snapshot -o HDD1/Media | xargs -n1 zfs destroy
+zfs list -H -o name -t snapshot HDD1/Media | xargs -n1 zfs destroy
 ```
