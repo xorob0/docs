@@ -30,9 +30,19 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "e6fda64c966df02d",
+            "type": "leaf",
+            "state": {
+              "type": "release-notes",
+              "state": {
+                "currentVersion": "1.1.9"
+              }
+            }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -129,7 +139,7 @@
       "markdown-importer:Open format converter": false
     }
   },
-  "active": "20d9b35fe116ecb2",
+  "active": "e6fda64c966df02d",
   "lastOpenFiles": [
     "docs/others/zfs.md",
     "docs/others/template.md",
