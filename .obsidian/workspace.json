@@ -80,7 +80,8 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -139,7 +140,7 @@
       "markdown-importer:Open format converter": false
     }
   },
-  "active": "e6fda64c966df02d",
+  "active": "b75789157aac507c",
   "lastOpenFiles": [
     "docs/others/zfs.md",
     "docs/others/template.md",
