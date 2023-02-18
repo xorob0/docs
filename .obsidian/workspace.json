@@ -35,9 +35,11 @@
             "id": "e6fda64c966df02d",
             "type": "leaf",
             "state": {
-              "type": "release-notes",
+              "type": "markdown",
               "state": {
-                "currentVersion": "1.1.9"
+                "file": "docs/celty/delete unlinked torrents.md",
+                "mode": "source",
+                "source": false
               }
             }
           }
@@ -140,7 +142,7 @@
       "markdown-importer:Open format converter": false
     }
   },
-  "active": "b75789157aac507c",
+  "active": "e6fda64c966df02d",
   "lastOpenFiles": [
     "docs/others/zfs.md",
     "docs/others/template.md",
