@@ -1,0 +1,151 @@
+{
+  "main": {
+    "id": "3c3d317110a9c497",
+    "type": "split",
+    "children": [
+      {
+        "id": "f02f3ff7fea406b0",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "1ca80c3562902dbc",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {}
+            }
+          },
+          {
+            "id": "20d9b35fe116ecb2",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {}
+            }
+          },
+          {
+            "id": "ce68b520d076ba3b",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {}
+            }
+          },
+          {
+            "id": "1b3ff893cbded2d8",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {}
+            }
+          }
+        ],
+        "currentTab": 3
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "52f2328d6591b153",
+    "type": "split",
+    "children": [
+      {
+        "id": "45407dc3e4dee6b6",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "9b4a4bd22ec6f1d9",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "b75789157aac507c",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "5560ad462d1032f3",
+    "type": "split",
+    "children": [
+      {
+        "id": "a39d8d0727cbc9ac",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "dff8812fcfe03c4e",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "be781c1feb5ccddf",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "command-palette:Open command palette": false,
+      "markdown-importer:Open format converter": false
+    }
+  },
+  "active": "1b3ff893cbded2d8",
+  "lastOpenFiles": [
+    "docs/services/NextDNS.md",
+    "docs/services/Tailscale DNS.md",
+    "docs/celty/delete unlinked torrents.md",
+    "docs/others/services/dns.md",
+    "docs/others/zfs.md",
+    "docs/others/template.md",
+    "docs/others/servers.md",
+    "docs/others/nebula.md",
+    "docs/monitoring/blackhole.md",
+    "docs/Macos/nebula.md"
+  ]
+}
