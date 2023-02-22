@@ -1,0 +1,2443 @@
+{
+  "openapi" : "3.0.0",
+  "info" : {
+    "contact" : {
+      "email" : "info@masana.care",
+      "name" : "Masana Support",
+      "url" : "https://www.masana.care/"
+    },
+    "description" : "## Protocol:\n\n### Status codes\n\nSome responses are expectable for all kind of requests and must be managed while\nnot specified in the responses:\n\n| Code | Description                                                      |\n|:----:|------------------------------------------------------------------|\n| 422  | `Unprocessable Entity`                                           |\n|      | The server cannot or will not process the request due to         |\n|      | something that is perceived to be a client error (e.g., malformed|\n|      | request syntax or invalid request message). The response must be |\n|      | an _Rfc 7807_ problem description.                               |\n| 401  | `Unauthorized`                                                   |\n|      | The authorization token is absent, invalid, has expired or has   |\n|      | been revoked. The response must be an _Rfc 7807_ problem         |\n|      | description.                                                     |\n\n### Parameters\n\n#### Email addresses\nWhen present in the URL as path or query parameter, an email address must \nbe [URL encoded](https://en.wikipedia.org/wiki/Percent-encoding).\n\n#### Phone numbers\n\nPhone numbers are **always** formatted as the [_E.164_ convention](https://en.wikipedia.org/wiki/E.164). \n\nWhen present in the URL as path or query parameter, a phone number must be \n[URL encoded](https://en.wikipedia.org/wiki/Percent-encoding).",
+    "title" : "Masana RESTful API",
+    "version" : "0.0.0-alpha"
+  },
+  "servers" : [ {
+    "url" : "/"
+  } ],
+  "security" : [ {
+    "BearerAuth" : [ ]
+  }, {
+    "AccessTokenAuth" : [ ]
+  } ],
+  "paths" : {
+    "/api/auth" : {
+      "post" : {
+        "description" : "Attempt to authenticate an user using his email address and password.",
+        "operationId" : "authenticate",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/AuthenticationRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SessionData"
+                }
+              }
+            },
+            "description" : "The authentication process succeeded."
+          },
+          "401" : {
+            "description" : "The authentiation process failed.",
+            "x-response-id" : "AuthenticationFailed"
+          }
+        },
+        "security" : [ ],
+        "summary" : "Authenticate a user",
+        "tags" : [ "Authentication" ]
+      }
+    },
+    "/api/logout" : {
+      "post" : {
+        "description" : "Logs out the current user by cleaning the necessary authentication cookies.",
+        "operationId" : "logout",
+        "responses" : {
+          "204" : {
+            "description" : "The logout process succeeded."
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Rfc7807Problem"
+                }
+              }
+            },
+            "description" : "The logout process failed.",
+            "x-response-id" : "LogoutFailed"
+          }
+        },
+        "summary" : "Logs out the current user.",
+        "tags" : [ "Authentication" ]
+      }
+    },
+    "/api/beneficiaries" : {
+      "post" : {
+        "description" : "Register a beneficiary. Once registered, any user with the beneficiary email\nand password will be able to authenticate.",
+        "operationId" : "registerBeneficiary",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/BeneficiaryRegistrationRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Beneficiary"
+                }
+              }
+            },
+            "description" : "The beneficiary is registered and active.",
+            "headers" : {
+              "Location" : {
+                "description" : "Relative URL to access this beneficiary",
+                "schema" : {
+                  "type" : "string"
+                }
+              },
+              "Set-Cookies" : {
+                "description" : "Set authentication cookies to authenticate as this beneficiary.\nThoses cookies must be reused in all subsequent requests for\nthe same session.",
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          },
+          "422" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Rfc7807Problem"
+                }
+              }
+            },
+            "description" : "The beneficiary registration process failed. No further details are\ngiven for security reasons.",
+            "x-response-id" : "BeneficiaryRegistrationFailed"
+          }
+        },
+        "security" : [ ],
+        "summary" : "Register a beneficiary",
+        "tags" : [ "Beneficiaries" ]
+      }
+    },
+    "/api/beneficiaries/{beneficiaryRef}/measures" : {
+      "get" : {
+        "description" : "Return a collection of measures owned by one beneficiary.\n<br/> **Note:** One of the `startDateTime` or `startId` is required. They are mutually exclusive.\n",
+        "operationId" : "getBeneficiaryMeasures",
+        "parameters" : [ {
+          "description" : "Beneficiary reference.",
+          "in" : "path",
+          "name" : "beneficiaryRef",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "x-data-type" : "BeneficiaryRef",
+          "x-target-resource" : true
+        }, {
+          "description" : "This parameter is **required** when `startId` is not used.<br /> A date to get measures around and at this date time. The direction is given via the `take` parameter.\n",
+          "example" : "2020-04-25T23:40:50.52Z",
+          "in" : "query",
+          "name" : "startDateTime",
+          "required" : false,
+          "schema" : {
+            "format" : "date-time",
+            "type" : "string"
+          }
+        }, {
+          "description" : "This parameter is **required** when `startDateTime` is not used.<br /> A measure id to get measures around it (excluded). The direction is given via the `take` parameter.\n",
+          "example" : "88489540-b0bf-4735-b275-586b95beb524",
+          "in" : "query",
+          "name" : "startId",
+          "required" : false,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          }
+        }, {
+          "description" : "The maximum number of measures to return.\n  + a **negative** value will return measures taken **before** the\n    \"start\" parameter.\n  + a **positive** value will return measures taken **after** the\n    \"start\" parameter.\n",
+          "example" : 15,
+          "in" : "query",
+          "name" : "take",
+          "required" : true,
+          "schema" : {
+            "format" : "int32",
+            "maximum" : 50,
+            "minimum" : -50,
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/MeasureCollection"
+                }
+              }
+            },
+            "description" : "A collection of beneficiary measure."
+          },
+          "400" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Rfc7807Problem"
+                }
+              }
+            },
+            "description" : "One of the required parameters is missing",
+            "x-response-id" : "BadRequest"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Rfc7807Problem"
+                }
+              }
+            },
+            "description" : "Either the beneficiary ref or the startId ref is unknown",
+            "x-response-id" : "RefNotFound"
+          }
+        },
+        "summary" : "Retrieve a collection of measure",
+        "tags" : [ "BeneficiaryMeasures" ],
+        "x-with-target-resource" : true
+      },
+      "post" : {
+        "description" : "Create and save a new measure for the beneficiary identified by the ref.",
+        "operationId" : "createBeneficiaryMeasure",
+        "parameters" : [ {
+          "description" : "Beneficiary reference.",
+          "in" : "path",
+          "name" : "beneficiaryRef",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "x-data-type" : "BeneficiaryRef",
+          "x-target-resource" : true
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/MeasureCreationRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Measure"
+                }
+              }
+            },
+            "description" : "The new measure has been recorded."
+          },
+          "422" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Rfc7807Problem"
+                }
+              }
+            },
+            "description" : "The beneficiary measure is invalid.",
+            "x-response-id" : "BeneficiaryMeasureInvalid"
+          }
+        },
+        "summary" : "Create a measure for the beneficiary.",
+        "tags" : [ "BeneficiaryMeasures" ],
+        "x-with-target-resource" : true
+      }
+    },
+    "/api/email-addresses/{email}/validation-codes" : {
+      "post" : {
+        "description" : "Create a validation code for this email address. The validation code\nwill be sent by mail to this address as soon as possible; receiving a\nresponse does not means that the email as been sent.",
+        "operationId" : "createEmailValidationCode",
+        "parameters" : [ {
+          "description" : "email address. **Must** be url encoded",
+          "in" : "path",
+          "name" : "email",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/EmailAddress"
+          }
+        }, {
+          "description" : "Name and version of the client application. Unauthorized applications\nwill be discarded silently.",
+          "in" : "header",
+          "name" : "user-agent",
+          "required" : false,
+          "schema" : {
+            "example" : "Masana/1.2.3",
+            "pattern" : "([A-Za-z0-9\\s]{3,})/([0-9\\.-]{3,}).*",
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ValidationCodeRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "202" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/EmailValidationCode"
+                }
+              }
+            },
+            "description" : "The code is generated and will be sent as soon as possible"
+          }
+        },
+        "security" : [ ],
+        "summary" : "Create an email validation code",
+        "tags" : [ "EmailAddresses" ]
+      }
+    },
+    "/api/email-addresses/{email}/validation-codes/{code}" : {
+      "head" : {
+        "description" : "Validate that the given `code` is associated with this email address\nand has not expired.",
+        "operationId" : "verifyEmailValidationCode",
+        "parameters" : [ {
+          "description" : "email address. **Must** be url encoded",
+          "in" : "path",
+          "name" : "email",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/EmailAddress"
+          }
+        }, {
+          "description" : "The validation code as sent to the user.",
+          "in" : "path",
+          "name" : "code",
+          "required" : true,
+          "schema" : {
+            "example" : "123456",
+            "pattern" : "[0-9]{6}",
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "The code exists and is valid."
+          },
+          "422" : {
+            "description" : "The code is invalid. No further details are given for security reasons.",
+            "x-response-id" : "InvalidCode"
+          }
+        },
+        "security" : [ ],
+        "summary" : "Verify an email validation code",
+        "tags" : [ "EmailAddresses" ]
+      }
+    },
+    "/api/professional-invitations" : {
+      "get" : {
+        "description" : "Returns the professional invitations for all organisations. Only the invitations with status `PENDING`, `LINKED` or `EXPIRED` are returned.\n",
+        "operationId" : "getAllProfessionalInvitations",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/InvitationCollection"
+                }
+              }
+            },
+            "description" : "A list of invitations."
+          }
+        },
+        "summary" : "Retrieve all professional invitations",
+        "tags" : [ "Invitations" ],
+        "x-with-target-resource" : false
+      }
+    },
+    "/api/organisations/{organisationRef}/professional-invitations" : {
+      "get" : {
+        "description" : "Returns the professional invitations for this organisation. Only the invitations with status `PENDING`, `LINKED` or `EXPIRED` are returned.\n",
+        "operationId" : "getAllProfessionalInvitationsInOrganisation",
+        "parameters" : [ {
+          "description" : "Organisation reference.",
+          "example" : "5d79c7ee-7dd9-41bc-9251-385a9d776675",
+          "in" : "path",
+          "name" : "organisationRef",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "x-data-type" : "OrganisationRef",
+          "x-target-resource" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/InvitationCollection"
+                }
+              }
+            },
+            "description" : "The list of invitations."
+          }
+        },
+        "summary" : "Retrieve all professional invitations for one organisation",
+        "tags" : [ "Invitations" ],
+        "x-with-target-resource" : true
+      },
+      "post" : {
+        "description" : "An invitation is created and sent to the guest so that it will be able\nto join the organisation.",
+        "operationId" : "createProfessionalInvitation",
+        "parameters" : [ {
+          "description" : "Organisation reference.",
+          "example" : "5d79c7ee-7dd9-41bc-9251-385a9d776675",
+          "in" : "path",
+          "name" : "organisationRef",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "x-data-type" : "OrganisationRef",
+          "x-target-resource" : true
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/InvitationRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "202" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Invitation"
+                }
+              }
+            },
+            "description" : "The invitation is created and will be sent a soon as possible"
+          },
+          "404" : {
+            "description" : "There is no organisation matching the 'organisationRef'.",
+            "x-response-id" : "NotFound"
+          },
+          "422" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Rfc7807Problem"
+                }
+              }
+            },
+            "description" : "Some required conditions are not met. Read the InvitationRequest\nto get some hints.",
+            "x-response-id" : "InvitationCreationFailed"
+          }
+        },
+        "summary" : "Invite an professional in this organisation",
+        "tags" : [ "Invitations" ],
+        "x-with-target-resource" : true
+      }
+    },
+    "/api/professional-invitations/{invitationRef}" : {
+      "delete" : {
+        "description" : "Cancel an invitation so that it cannot be used. The linking code will be invalidated.\n",
+        "operationId" : "cancelProfessionalInvitation",
+        "parameters" : [ {
+          "description" : "Invitation reference.",
+          "example" : "1ae8649c-54d1-4f1d-93b2-6d7a05963cca",
+          "in" : "path",
+          "name" : "invitationRef",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "x-data-type" : "InvitationRef",
+          "x-target-resource" : true
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "The invitation has been cancelled"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Rfc7807Problem"
+                }
+              }
+            },
+            "description" : "No invitation found for the given reference",
+            "x-response-id" : "NotFound"
+          },
+          "409" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Rfc7807Problem"
+                }
+              }
+            },
+            "description" : "The invitation status prevented his cancellation\n",
+            "x-response-id" : "InvitationCancellationError"
+          }
+        },
+        "summary" : "Cancel an invitation",
+        "tags" : [ "Invitations" ],
+        "x-with-target-resource" : true
+      }
+    },
+    "/api/professional-invitations/{invitationRef}/renew" : {
+      "post" : {
+        "description" : "Generate a new linking code and resend the invitation. The previous code is automatically invalidated. The renewed invitation will be sent trough the same channels and recipient.\n",
+        "operationId" : "renewProfessionalInvitation",
+        "parameters" : [ {
+          "description" : "Invitation reference.",
+          "example" : "1ae8649c-54d1-4f1d-93b2-6d7a05963cca",
+          "in" : "path",
+          "name" : "invitationRef",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "x-data-type" : "InvitationRef",
+          "x-target-resource" : true
+        } ],
+        "responses" : {
+          "202" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Invitation"
+                }
+              }
+            },
+            "description" : "The invitation is renewed and will be sent a soon as possible"
+          },
+          "404" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Rfc7807Problem"
+                }
+              }
+            },
+            "description" : "There is no invitation matching the 'invitationRef'.",
+            "x-response-id" : "NotFound"
+          },
+          "409" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Rfc7807Problem"
+                }
+              }
+            },
+            "description" : "The status does not allow this invitation to be renewed.",
+            "x-response-id" : "CannotBeRenewed"
+          },
+          "429" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Rfc7807Problem"
+                }
+              }
+            },
+            "description" : "There was too many renew for a given amount of time.",
+            "x-response-id" : "TooManyRequests"
+          }
+        },
+        "summary" : "Renew the code and resend the invitation",
+        "tags" : [ "Invitations" ],
+        "x-with-target-resource" : true
+      }
+    },
+    "/api/mobile-phone-numbers/{number}/validation-codes" : {
+      "post" : {
+        "description" : "Create a validation code for this mobile phone number. The validation\ncode will be sent by SMS to this mobile phone number as soon as\npossible; receiving a response does not means that the SMS has been\nsent.",
+        "operationId" : "createMobilePhoneNumberValidationCode",
+        "parameters" : [ {
+          "description" : "Mobile phone number at format E.164. **Must** be url encoded",
+          "in" : "path",
+          "name" : "number",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/PhoneNumber"
+          }
+        }, {
+          "description" : "Name and version of the client application. Unauthorized applications\nwill be discarded silently.",
+          "in" : "header",
+          "name" : "user-agent",
+          "required" : false,
+          "schema" : {
+            "example" : "Masana/1.2.3",
+            "pattern" : "([A-Za-z0-9\\s]{3,})/([0-9\\.-]{3,}).*",
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ValidationCodeRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "202" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/MobilePhoneNumberValidationCode"
+                }
+              }
+            },
+            "description" : "The code is generated and will be sent as soon as possible"
+          }
+        },
+        "security" : [ ],
+        "summary" : "Create a mobile phone number validation code",
+        "tags" : [ "MobilePhoneNumbers" ]
+      }
+    },
+    "/api/mobile-phone-numbers/{number}/validation-codes/{code}" : {
+      "head" : {
+        "description" : "Validate that the given `code` is associated with this mobile phone\nnumber and has not expired.",
+        "operationId" : "validateMobilePhoneNumberValidationCode",
+        "parameters" : [ {
+          "description" : "Mobile phone number at format E.164. **Must** be url encoded",
+          "in" : "path",
+          "name" : "number",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/components/schemas/PhoneNumber"
+          }
+        }, {
+          "description" : "The validation code as sent to the user.",
+          "in" : "path",
+          "name" : "code",
+          "required" : true,
+          "schema" : {
+            "example" : "123456",
+            "pattern" : "[0-9]{6}",
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "The code exists and is valid."
+          },
+          "422" : {
+            "description" : "The code is invalid. No further details are given for security reasons.",
+            "x-response-id" : "InvalidCode"
+          }
+        },
+        "security" : [ ],
+        "summary" : "Validate a mobile phone number validation code",
+        "tags" : [ "MobilePhoneNumbers" ]
+      }
+    },
+    "/api/professions" : {
+      "get" : {
+        "description" : "Return an unordered collection of all active professions in the system.\n",
+        "operationId" : "getAllProfessions",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProfessionCollection"
+                }
+              }
+            },
+            "description" : "All active professions"
+          }
+        },
+        "summary" : "Retrieve all professions",
+        "tags" : [ "Professions" ]
+      },
+      "post" : {
+        "description" : "Create a profession that can be used by all organisations.\n",
+        "operationId" : "createProfession",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ProfessionCreationRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Profession"
+                }
+              }
+            },
+            "description" : "The profession is created and ready to be used.",
+            "headers" : {
+              "Location" : {
+                "description" : "Relative URL to access this profession",
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          },
+          "422" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Rfc7807Problem"
+                }
+              }
+            },
+            "description" : "The profession cannot be created.",
+            "x-response-id" : "ProfessionCreationFailed"
+          }
+        },
+        "summary" : "Create a profession",
+        "tags" : [ "Professions" ]
+      }
+    },
+    "/api/professionals" : {
+      "post" : {
+        "description" : "Register a professional. Once registered, any user with the professional\nemail and password will be able to authenticate.",
+        "operationId" : "registerProfessional",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ProfessionalRegistrationRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Professional"
+                }
+              }
+            },
+            "description" : "The professional is registered and active.",
+            "headers" : {
+              "Location" : {
+                "description" : "Relative URL to access this professional",
+                "schema" : {
+                  "type" : "string"
+                }
+              },
+              "Set-Cookies" : {
+                "description" : "Set authentication cookies to authenticate as this professional.\nThoses cookies must be reused in all subsequent requests for the\nsame session.",
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          },
+          "422" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Rfc7807Problem"
+                }
+              }
+            },
+            "description" : "The professional registration process failed. No further details are\ngiven for security reasons.",
+            "x-response-id" : "ProfessionalRegistrationFailed"
+          }
+        },
+        "security" : [ ],
+        "summary" : "Register a professional",
+        "tags" : [ "Professionals" ]
+      }
+    },
+    "/api/sys-admins" : {
+      "post" : {
+        "description" : "Register a sys admin. Once registered, any user with the sys admin email\nand password will be able to authenticate.",
+        "operationId" : "registerSysAdmin",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/SysAdminRegistrationRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SysAdmin"
+                }
+              }
+            },
+            "description" : "The sys admin is registered and active.",
+            "headers" : {
+              "Location" : {
+                "description" : "Relative URL to access this sys admin",
+                "schema" : {
+                  "type" : "string"
+                }
+              },
+              "Set-Cookies" : {
+                "description" : "Set authentication cookies to authenticate as this sys admin.\nThoses cookies must be reused in all subsequent requests for\nthe same session.",
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          },
+          "422" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Rfc7807Problem"
+                }
+              }
+            },
+            "description" : "The sys admin registration process failed. No further details are\ngiven for security reasons.",
+            "x-response-id" : "SysAdminRegistrationFailed"
+          }
+        },
+        "security" : [ ],
+        "summary" : "Register a sys admin",
+        "tags" : [ "SysAdmins" ]
+      }
+    },
+    "/api/organisations" : {
+      "get" : {
+        "description" : "Get a collection of all organisations",
+        "operationId" : "getOrganisations",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/OrganisationCollection"
+                }
+              }
+            },
+            "description" : "The list of organisations."
+          }
+        },
+        "summary" : "Get all organisations",
+        "tags" : [ "Organisations" ],
+        "x-with-target-resource" : false
+      },
+      "post" : {
+        "description" : "Create a new organisation.",
+        "operationId" : "createOrganisation",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CreateOrganisationRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Organisation"
+                }
+              }
+            },
+            "description" : "The organisation has been successfully created.",
+            "headers" : {
+              "Location" : {
+                "description" : "Relative URL to access this organisation",
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          },
+          "422" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Rfc7807Problem"
+                }
+              }
+            },
+            "description" : "The organisation creation process failed.",
+            "x-response-id" : "OrganisationCreationFailed"
+          }
+        },
+        "summary" : "Create a new organisation",
+        "tags" : [ "Organisations" ]
+      }
+    },
+    "/api/organisations/{organisationRef}" : {
+      "get" : {
+        "description" : "Get an organisation.",
+        "operationId" : "getOrganisation",
+        "parameters" : [ {
+          "description" : "Organisation reference.",
+          "example" : "5d79c7ee-7dd9-41bc-9251-385a9d776675",
+          "in" : "path",
+          "name" : "organisationRef",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "x-data-type" : "OrganisationRef",
+          "x-target-resource" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Organisation"
+                }
+              }
+            },
+            "description" : "The organisation resource"
+          },
+          "404" : {
+            "description" : "There is no organisation matching the 'organisationRef'.",
+            "x-response-id" : "NotFound"
+          }
+        },
+        "summary" : "Get an organisation",
+        "tags" : [ "Organisations" ],
+        "x-with-target-resource" : true
+      },
+      "post" : {
+        "description" : "Update the specified organisation.",
+        "operationId" : "updateOrganisation",
+        "parameters" : [ {
+          "description" : "Organisation reference.",
+          "example" : "5d79c7ee-7dd9-41bc-9251-385a9d776675",
+          "in" : "path",
+          "name" : "organisationRef",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "x-data-type" : "OrganisationRef",
+          "x-target-resource" : true
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/UpdateOrganisationRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Organisation"
+                }
+              }
+            },
+            "description" : "The organisation has been successfully updated."
+          },
+          "422" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Rfc7807Problem"
+                }
+              }
+            },
+            "description" : "The organisation update process failed.",
+            "x-response-id" : "OrganisationUpdateFailed"
+          }
+        },
+        "summary" : "Update an organisation",
+        "tags" : [ "Organisations" ],
+        "x-with-target-resource" : true
+      }
+    },
+    "/api/organisations/{organisationRef}/privacy-policy" : {
+      "get" : {
+        "description" : "Get an organisation's privacy policy document.",
+        "operationId" : "getOrganisationPrivacyPolicy",
+        "parameters" : [ {
+          "description" : "Organisation reference.",
+          "example" : "5d79c7ee-7dd9-41bc-9251-385a9d776675",
+          "in" : "path",
+          "name" : "organisationRef",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "x-data-type" : "OrganisationRef",
+          "x-target-resource" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Organisation"
+                }
+              }
+            },
+            "description" : "The organisation's privacy policy document content."
+          },
+          "404" : {
+            "description" : "The organisation's privacy policy document is not defined yet.",
+            "x-response-id" : "NotFound"
+          }
+        },
+        "summary" : "Get an organisation's privacy policy document",
+        "tags" : [ "Organisations" ],
+        "x-with-target-resource" : true
+      },
+      "post" : {
+        "description" : "Upload the organisation's privacy policy.",
+        "operationId" : "uploadOrganisationPrivacyPolicy",
+        "parameters" : [ {
+          "description" : "Organisation reference.",
+          "example" : "5d79c7ee-7dd9-41bc-9251-385a9d776675",
+          "in" : "path",
+          "name" : "organisationRef",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "x-data-type" : "OrganisationRef",
+          "x-target-resource" : true
+        } ],
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/inline_object",
+          "content" : {
+            "multipart/form-data" : {
+              "schema" : {
+                "properties" : {
+                  "privacyPolicy" : {
+                    "format" : "binary",
+                    "type" : "string"
+                  }
+                },
+                "required" : [ "privacyPolicy" ],
+                "type" : "object"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "description" : "The organisation's privacy policy has been successfully uploaded."
+          },
+          "422" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Rfc7807Problem"
+                }
+              }
+            },
+            "description" : "The organisation's privacy policy upload process failed.",
+            "x-response-id" : "PrivacyPolicyUploadFailed"
+          }
+        },
+        "summary" : "Upload the organisation's privacy policy",
+        "tags" : [ "Organisations" ],
+        "x-with-target-resource" : true
+      }
+    },
+    "/api/beneficiaries/{beneficiaryRef}/calendar-events" : {
+      "get" : {
+        "description" : "List all calendar events for a beneficiary.",
+        "operationId" : "getCalendarEventsForBeneficiary",
+        "parameters" : [ {
+          "description" : "Beneficiary reference.",
+          "in" : "path",
+          "name" : "beneficiaryRef",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "x-data-type" : "BeneficiaryRef",
+          "x-target-resource" : true
+        }, {
+          "example" : "2020-04-25T23:40:50.52Z",
+          "in" : "query",
+          "name" : "start",
+          "required" : false,
+          "schema" : {
+            "format" : "date-time",
+            "type" : "string"
+          }
+        }, {
+          "example" : "2020-04-25T23:40:50.52Z",
+          "in" : "query",
+          "name" : "end",
+          "required" : false,
+          "schema" : {
+            "format" : "date-time",
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CalendarEventCollection"
+                }
+              }
+            },
+            "description" : "The list of calendar events for the beneficiary."
+          }
+        },
+        "summary" : "List all calendar events for a beneficiary.",
+        "tags" : [ "CalendarEvents" ],
+        "x-with-target-resource" : true
+      },
+      "post" : {
+        "description" : "Create a new calendar event for the given beneficiary.",
+        "operationId" : "createCalendarEvent",
+        "parameters" : [ {
+          "description" : "Beneficiary reference.",
+          "in" : "path",
+          "name" : "beneficiaryRef",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "x-data-type" : "BeneficiaryRef",
+          "x-target-resource" : true
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CreateCalendarEventRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CalendarEvent"
+                }
+              }
+            },
+            "description" : "The calendar event has been successfully created.",
+            "headers" : {
+              "Location" : {
+                "description" : "Relative URL to access this calendar event",
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          },
+          "422" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Rfc7807Problem"
+                }
+              }
+            },
+            "description" : "The calendar event creation process failed.",
+            "x-response-id" : "CalendarEventCreationFailed"
+          }
+        },
+        "summary" : "Create a new calendar event for the given beneficiary.",
+        "tags" : [ "CalendarEvents" ],
+        "x-with-target-resource" : true
+      }
+    },
+    "/api/calendar-events/{calendarEventRef}" : {
+      "get" : {
+        "description" : "Get a specific calendar event.",
+        "operationId" : "getCalendarEvent",
+        "parameters" : [ {
+          "description" : "Calendar event reference.",
+          "in" : "path",
+          "name" : "calendarEventRef",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "x-data-type" : "CalendarEventRef",
+          "x-target-resource" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CalendarEvent"
+                }
+              }
+            },
+            "description" : "The calendar event resource"
+          },
+          "404" : {
+            "description" : "There is no calendar event matching the 'calendarEventRef'.",
+            "x-response-id" : "NotFound"
+          }
+        },
+        "summary" : "Get a specific calendar event.",
+        "tags" : [ "CalendarEvents" ],
+        "x-with-target-resource" : true
+      },
+      "put" : {
+        "description" : "Update the specified calendar event.",
+        "operationId" : "updateCalendarEvent",
+        "parameters" : [ {
+          "description" : "Calendar event reference.",
+          "in" : "path",
+          "name" : "calendarEventRef",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "x-data-type" : "CalendarEventRef",
+          "x-target-resource" : true
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/UpdateCalendarEventRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CalendarEvent"
+                }
+              }
+            },
+            "description" : "The calendar event has been successfully updated."
+          },
+          "422" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Rfc7807Problem"
+                }
+              }
+            },
+            "description" : "The calendar event process failed.",
+            "x-response-id" : "CalendarEventUpdateFailed"
+          }
+        },
+        "summary" : "Update a calendar event",
+        "tags" : [ "CalendarEvents" ],
+        "x-with-target-resource" : true
+      }
+    },
+    "/assets/{path}" : {
+      "get" : {
+        "description" : "Return the asset at `path`. The returned asset content may be compressed\nwith \"gzip\" when the corresponding `Accept-Encoding` header is present.\nEntity tags are provided to cache the asset.\n\nSee:\n  + [Content codings and gzip at Rfc7231](https://tools.ietf.org/html/rfc7231#section-3.1.2.2)\n  + [Entity Tags at Rfc7232](https://tools.ietf.org/html/rfc7232#section-2.3)",
+        "operationId" : "retrieveAsset",
+        "parameters" : [ {
+          "description" : "The asset path.",
+          "in" : "path",
+          "name" : "path",
+          "required" : true,
+          "schema" : {
+            "example" : "documents/Masana-Conditions_generales.pdf",
+            "type" : "string"
+          }
+        }, {
+          "description" : "Accept-Encoding header to negotiate the content. Only \"gzip\"\nis supported.",
+          "in" : "header",
+          "name" : "Accept-Encoding",
+          "required" : false,
+          "schema" : {
+            "example" : "gzip",
+            "type" : "string"
+          }
+        }, {
+          "description" : "If-None-Match header to prevent downloading unmodified content.",
+          "in" : "header",
+          "name" : "If-None-Match",
+          "required" : false,
+          "schema" : {
+            "example" : "23dcc403b263f262692ac58437104acf",
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "The asset binary content. The `Content-Type` header should\ndescribe the asset type."
+          },
+          "304" : {
+            "description" : "If the `If-None-Match` header was used and match the asset Etag."
+          },
+          "404" : {
+            "description" : "There is no asset at `path`.",
+            "x-response-id" : "NotFound"
+          }
+        },
+        "security" : [ ],
+        "summary" : "Retrieve an asset",
+        "tags" : [ "Assets" ]
+      }
+    }
+  },
+  "components" : {
+    "requestBodies" : {
+      "inline_object" : {
+        "content" : {
+          "multipart/form-data" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/inline_object"
+            }
+          }
+        },
+        "required" : true
+      }
+    },
+    "schemas" : {
+      "MeasureOfBloodGlucose" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/MeasureValue"
+        }, {
+          "$ref" : "#/components/schemas/MeasureOfBloodGlucose_allOf"
+        } ],
+        "type" : "object"
+      },
+      "MeasureOfBloodPressure" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/MeasureValue"
+        }, {
+          "$ref" : "#/components/schemas/MeasureOfBloodPressure_allOf"
+        } ],
+        "type" : "object"
+      },
+      "MeasureOfSaturation" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/MeasureValue"
+        }, {
+          "$ref" : "#/components/schemas/MeasureOfSaturation_allOf"
+        } ],
+        "type" : "object"
+      },
+      "MeasureOfTemperature" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/MeasureValue"
+        }, {
+          "$ref" : "#/components/schemas/MeasureOfTemperature_allOf"
+        } ],
+        "type" : "object"
+      },
+      "MeasureOfWeight" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/MeasureValue"
+        }, {
+          "$ref" : "#/components/schemas/MeasureOfWeight_allOf"
+        } ],
+        "type" : "object"
+      },
+      "MeasureOfRespiratoryRate" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/MeasureValue"
+        }, {
+          "$ref" : "#/components/schemas/MeasureOfRespiratoryRate_allOf"
+        } ],
+        "type" : "object"
+      },
+      "MeasureOfLungCapacity" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/MeasureValue"
+        }, {
+          "$ref" : "#/components/schemas/MeasureOfLungCapacity_allOf"
+        } ],
+        "type" : "object"
+      },
+      "MeasureOfLungCapacityResponse" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/MeasureValue"
+        }, {
+          "$ref" : "#/components/schemas/MeasureOfLungCapacityResponse_allOf"
+        } ],
+        "description" : "A measure of lunge capacity as replied by our API. The `fev1FvcRatio`\nis computed and returned by our system.",
+        "type" : "object"
+      },
+      "SessionData" : {
+        "properties" : {
+          "identityRef" : {
+            "description" : "the reference of the authenticated identity",
+            "example" : "8811b7b4-2d5a-4503-8d01-d27b561ab19f",
+            "type" : "string"
+          }
+        },
+        "required" : [ "identityRef" ],
+        "type" : "object"
+      },
+      "AuthenticationRequest" : {
+        "properties" : {
+          "email" : {
+            "$ref" : "#/components/schemas/EmailAddress"
+          },
+          "password" : {
+            "description" : "The user's password.",
+            "example" : "S3cr3tP455w0rd",
+            "type" : "string"
+          }
+        },
+        "required" : [ "email", "password" ],
+        "type" : "object"
+      },
+      "Rfc7807Problem" : {
+        "properties" : {
+          "type" : {
+            "description" : "A URI reference that identifies the problem type.",
+            "example" : "https://example.org/doc/#model-MalformedEmail",
+            "type" : "string"
+          },
+          "title" : {
+            "description" : "A short, human-readable summary of the problem type.  It does not\nchange from occurrence to occurrence of the problem.",
+            "example" : "Malformed email",
+            "type" : "string"
+          },
+          "status" : {
+            "description" : "The HTTP status code associated with this occurrence of the problem.",
+            "example" : 400,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "detail" : {
+            "description" : "A human-readable explanation specific to this occurrence of the\nproblem.",
+            "example" : "The received '{}à!è@!.b}' email does not conform to the email format",
+            "type" : "string"
+          },
+          "instance" : {
+            "description" : "A URI reference that identifies the specific occurrence of the\nproblem.  It may or may not yield further information if dereferenced.",
+            "example" : "/problems/d914e",
+            "type" : "string"
+          }
+        },
+        "required" : [ "instance", "status", "title", "type" ],
+        "type" : "object"
+      },
+      "Beneficiary" : {
+        "properties" : {
+          "email" : {
+            "$ref" : "#/components/schemas/EmailAddress"
+          },
+          "firstName" : {
+            "example" : "Jeanne",
+            "type" : "string"
+          },
+          "lastName" : {
+            "example" : "Dumont",
+            "type" : "string"
+          },
+          "mobilePhoneNumber" : {
+            "$ref" : "#/components/schemas/PhoneNumber"
+          }
+        },
+        "required" : [ "email", "firstName", "lastName", "mobilePhoneNumber" ],
+        "type" : "object"
+      },
+      "BeneficiaryRegistrationRequest" : {
+        "properties" : {
+          "identity" : {
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Beneficiary"
+            } ],
+            "type" : "object"
+          },
+          "password" : {
+            "example" : "S3cr3tP455w0rd",
+            "type" : "string"
+          },
+          "emailValidationCode" : {
+            "example" : "123456",
+            "pattern" : "[0-9]{6}",
+            "type" : "string"
+          },
+          "phoneNumberValidationCode" : {
+            "example" : "123456",
+            "pattern" : "[0-9]{6}",
+            "type" : "string"
+          }
+        },
+        "required" : [ "emailValidationCode", "identity", "password", "phoneNumberValidationCode" ],
+        "type" : "object"
+      },
+      "MeasureCollection" : {
+        "properties" : {
+          "startDateTime" : {
+            "description" : "A reminder of the `startDateTime` used to produce this collection\n",
+            "example" : "2021-06-17T12:43:54.144Z",
+            "format" : "date-time",
+            "type" : "string"
+          },
+          "startId" : {
+            "description" : "A reminder of the `startId` used to produce this collection\n",
+            "example" : "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "items" : {
+            "items" : {
+              "$ref" : "#/components/schemas/Measure"
+            },
+            "type" : "array"
+          }
+        },
+        "required" : [ "items" ],
+        "type" : "object"
+      },
+      "Measure" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/MeasureHref"
+        }, {
+          "$ref" : "#/components/schemas/Measure_allOf"
+        } ]
+      },
+      "MeasureValue" : {
+        "discriminator" : {
+          "propertyName" : "measureType"
+        },
+        "properties" : {
+          "measureType" : {
+            "enum" : [ "MeasureOfBloodPressure", "MeasureOfLungCapacity", "MeasureOfSaturation", "MeasureOfTemperature", "MeasureOfRespiratoryRate", "MeasureOfWeight" ],
+            "example" : "MeasureOfTemperature",
+            "type" : "string"
+          }
+        },
+        "required" : [ "measureType" ],
+        "type" : "object"
+      },
+      "MeasureCreationRequest" : {
+        "properties" : {
+          "measure" : {
+            "$ref" : "#/components/schemas/MeasureValue"
+          },
+          "effectiveDateTime" : {
+            "example" : "2020-04-25T23:40:50.52Z",
+            "format" : "date-time",
+            "type" : "string"
+          },
+          "automatic" : {
+            "example" : true,
+            "type" : "boolean"
+          }
+        },
+        "required" : [ "measure" ],
+        "type" : "object"
+      },
+      "EmailValidationCode" : {
+        "properties" : {
+          "email" : {
+            "example" : "jdumont@example.org",
+            "pattern" : "([A-Z0-9a-z\\._%+-]+)@([A-Za-z0-9\\.-]+)\\.([A-Za-z]{2,64})",
+            "type" : "string"
+          },
+          "expiration" : {
+            "example" : "2020-04-25T23:40:50.52Z",
+            "format" : "date-time",
+            "type" : "string"
+          }
+        },
+        "required" : [ "email", "expiration" ],
+        "type" : "object"
+      },
+      "EmailAddress" : {
+        "description" : "A valid email address with a simplified format.",
+        "example" : "jdumont@example.org",
+        "pattern" : "([A-Z0-9a-z\\._%+-]+)@([A-Za-z0-9\\.-]+)\\.([A-Za-z]{2,64})",
+        "type" : "string"
+      },
+      "ValidationCodeRequest" : {
+        "properties" : {
+          "expectedOwnerType" : {
+            "description" : "The kind of entity that will use the data validated by this new\nvalidation code.",
+            "enum" : [ "Beneficiary", "Professional" ],
+            "example" : "Beneficiary",
+            "type" : "string"
+          }
+        },
+        "required" : [ "expectedOwnerType" ],
+        "type" : "object"
+      },
+      "InvitationCollection" : {
+        "properties" : {
+          "items" : {
+            "items" : {
+              "$ref" : "#/components/schemas/Invitation"
+            },
+            "type" : "array"
+          }
+        },
+        "required" : [ "items" ],
+        "type" : "object"
+      },
+      "Invitation" : {
+        "description" : "An invitation to become administrator of an organisation",
+        "properties" : {
+          "ref" : {
+            "example" : "/api/invitations/d6ed850a-17de-4540-8ccd-32adcddd1637",
+            "format" : "url",
+            "type" : "string",
+            "x-data-type" : "InvitationRef"
+          },
+          "organisation" : {
+            "$ref" : "#/components/schemas/Invitation_organisation"
+          },
+          "email" : {
+            "$ref" : "#/components/schemas/EmailAddress"
+          },
+          "phoneNumber" : {
+            "$ref" : "#/components/schemas/PhoneNumber"
+          },
+          "code" : {
+            "description" : "The invitation code. A mix of 8 characters (upper or lower) or\ndigits.",
+            "example" : "34Hz5K36",
+            "pattern" : "[A-Za-z0-9&&[^0O1Il8B]]{8}",
+            "type" : "string"
+          },
+          "createdAt" : {
+            "description" : "A timestamp of when this invitation has been created.",
+            "example" : "2021-09-30T10:37:42.01Z",
+            "format" : "date-time",
+            "type" : "string"
+          },
+          "status" : {
+            "description" : "The actual invitation state\n  + `PENDING`        - waiting to be used by the guest\n  + `LINKED`         - the guest is linked to an organisation\n  +\t`ALREADY_LINKED` - the guest has tried to link but was already in the organisation\n  + `EXPIRED`        - the code is not valid anymore\n  + `REVOKED`        - the invitation has been cancelled by an user",
+            "enum" : [ "PENDING", "LINKED", "ALREADY_LINKED", "EXPIRED", "REVOKED" ],
+            "example" : "PENDING",
+            "type" : "string"
+          },
+          "linkedAt" : {
+            "description" : "A timestamp indicating when the guest has succesfully joined the\norganisation via this invitation. Absent when not joined.",
+            "example" : "2021-10-01T08:12:01.28Z",
+            "format" : "date-time",
+            "type" : "string"
+          },
+          "professional" : {
+            "$ref" : "#/components/schemas/Invitation_professional"
+          },
+          "profession" : {
+            "$ref" : "#/components/schemas/ProfessionHref"
+          }
+        },
+        "required" : [ "code", "createdAt", "email", "organisation", "profession", "ref", "status" ],
+        "type" : "object"
+      },
+      "InvitationRequest" : {
+        "properties" : {
+          "firstName" : {
+            "example" : "Doe",
+            "pattern" : "^[A-Z][^\\s].{0,118}$",
+            "type" : "string"
+          },
+          "lastName" : {
+            "example" : "John",
+            "pattern" : "^[A-Z][^\\s].{0,118}$",
+            "type" : "string"
+          },
+          "email" : {
+            "$ref" : "#/components/schemas/EmailAddress"
+          },
+          "phoneNumber" : {
+            "$ref" : "#/components/schemas/PhoneNumber"
+          },
+          "sendBy" : {
+            "default" : "email",
+            "description" : "Choose the communication means used to send the invitation code:\n + `email` - one email with the instructions and code.\n + `sms`   - an email with the instructions but the code by SMS.\n             The `phoneNumber` is required when this option is\n             selected.",
+            "enum" : [ "email", "sms" ],
+            "example" : "email",
+            "type" : "string"
+          },
+          "profession" : {
+            "$ref" : "#/components/schemas/ProfessionHref"
+          }
+        },
+        "required" : [ "email", "profession", "sendBy" ],
+        "type" : "object"
+      },
+      "MobilePhoneNumberValidationCode" : {
+        "properties" : {
+          "number" : {
+            "$ref" : "#/components/schemas/PhoneNumber"
+          },
+          "expiration" : {
+            "example" : "2020-04-25T23:40:50.52Z",
+            "format" : "date-time",
+            "type" : "string"
+          }
+        },
+        "required" : [ "expiration", "number" ],
+        "type" : "object"
+      },
+      "PhoneNumber" : {
+        "description" : "Phone number at format e164 or hacked e164 where the leading \"+\"\ncharacter is replaced by \"00\".",
+        "example" : "+32456123789",
+        "pattern" : "[\\+|00]\\d{11}",
+        "type" : "string"
+      },
+      "ProfessionCollection" : {
+        "properties" : {
+          "items" : {
+            "items" : {
+              "$ref" : "#/components/schemas/Profession"
+            },
+            "type" : "array"
+          }
+        },
+        "required" : [ "items" ],
+        "type" : "object"
+      },
+      "Profession" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/ProfessionHref"
+        }, {
+          "$ref" : "#/components/schemas/Profession_allOf"
+        } ]
+      },
+      "ProfessionCreationRequest" : {
+        "properties" : {
+          "name" : {
+            "example" : "Nurse",
+            "type" : "string"
+          }
+        },
+        "required" : [ "name" ],
+        "type" : "object"
+      },
+      "Professional" : {
+        "properties" : {
+          "email" : {
+            "$ref" : "#/components/schemas/EmailAddress"
+          },
+          "firstName" : {
+            "example" : "John",
+            "type" : "string"
+          },
+          "lastName" : {
+            "example" : "Doe",
+            "type" : "string"
+          },
+          "mobilePhoneNumber" : {
+            "$ref" : "#/components/schemas/PhoneNumber"
+          }
+        },
+        "required" : [ "email", "firstName", "lastName", "mobilePhoneNumber" ],
+        "type" : "object"
+      },
+      "ProfessionalRegistrationRequest" : {
+        "properties" : {
+          "identity" : {
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/Professional"
+            } ],
+            "type" : "object"
+          },
+          "password" : {
+            "example" : "S3cr3tP455w0rd",
+            "type" : "string"
+          },
+          "emailValidationCode" : {
+            "example" : "123456",
+            "pattern" : "[0-9]{6}",
+            "type" : "string"
+          },
+          "phoneNumberValidationCode" : {
+            "example" : "123456",
+            "pattern" : "[0-9]{6}",
+            "type" : "string"
+          }
+        },
+        "required" : [ "emailValidationCode", "identity", "password", "phoneNumberValidationCode" ],
+        "type" : "object"
+      },
+      "SysAdmin" : {
+        "properties" : {
+          "email" : {
+            "$ref" : "#/components/schemas/EmailAddress"
+          },
+          "firstName" : {
+            "example" : "John",
+            "type" : "string"
+          },
+          "lastName" : {
+            "example" : "Doe",
+            "type" : "string"
+          }
+        },
+        "required" : [ "email", "firstName", "lastName" ],
+        "type" : "object"
+      },
+      "SysAdminRegistrationRequest" : {
+        "properties" : {
+          "identity" : {
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/SysAdmin"
+            } ],
+            "type" : "object"
+          },
+          "password" : {
+            "example" : "S3cr3tP455w0rd",
+            "type" : "string"
+          },
+          "emailValidationCode" : {
+            "example" : "123456",
+            "pattern" : "[0-9]{6}",
+            "type" : "string"
+          },
+          "invitationCode" : {
+            "example" : "U3dhZ2dlciByb2Nrcw==",
+            "type" : "string"
+          }
+        },
+        "required" : [ "emailValidationCode", "identity", "invitationCode", "password" ],
+        "type" : "object"
+      },
+      "OrganisationCollection" : {
+        "properties" : {
+          "items" : {
+            "items" : {
+              "$ref" : "#/components/schemas/Organisation"
+            },
+            "type" : "array"
+          }
+        },
+        "required" : [ "items" ],
+        "type" : "object"
+      },
+      "Organisation" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/OrganisationHref"
+        }, {
+          "$ref" : "#/components/schemas/CreateOrganisationRequest"
+        } ]
+      },
+      "CreateOrganisationRequest" : {
+        "properties" : {
+          "name" : {
+            "example" : "Masana SA",
+            "pattern" : "^.{3,50}$",
+            "type" : "string"
+          },
+          "appName" : {
+            "example" : "Masana Pro",
+            "pattern" : "^.{1,30}$",
+            "type" : "string"
+          },
+          "androidAppLink" : {
+            "example" : "https://play.google.com/store/apps/details?id=<package_name>",
+            "type" : "string"
+          },
+          "iosAppLink" : {
+            "example" : "https://apps.apple.com/en/app/<accountId>/id<appId>",
+            "type" : "string"
+          },
+          "measuresModuleEnabled" : {
+            "example" : false,
+            "type" : "boolean"
+          },
+          "openOrganisation" : {
+            "example" : true,
+            "type" : "boolean"
+          },
+          "email" : {
+            "$ref" : "#/components/schemas/EmailAddress"
+          },
+          "phoneNumber" : {
+            "$ref" : "#/components/schemas/PhoneNumber"
+          },
+          "address" : {
+            "$ref" : "#/components/schemas/Address"
+          }
+        },
+        "required" : [ "name" ],
+        "type" : "object"
+      },
+      "UpdateOrganisationRequest" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/Organisation"
+        } ]
+      },
+      "CalendarEventCollection" : {
+        "properties" : {
+          "items" : {
+            "items" : {
+              "$ref" : "#/components/schemas/CalendarEvent"
+            },
+            "type" : "array"
+          }
+        },
+        "required" : [ "items" ],
+        "type" : "object"
+      },
+      "CalendarEvent" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/CalendarEventHref"
+        }, {
+          "$ref" : "#/components/schemas/CreateCalendarEventRequest"
+        } ]
+      },
+      "CreateCalendarEventRequest" : {
+        "properties" : {
+          "eventType" : {
+            "enum" : [ "Beneficiary", "Professional", "TeleConsultation" ],
+            "example" : "Beneficiary",
+            "type" : "string"
+          },
+          "scheduling" : {
+            "$ref" : "#/components/schemas/Scheduling"
+          },
+          "recurrence" : {
+            "$ref" : "#/components/schemas/RecurrenceRule"
+          },
+          "tasks" : {
+            "items" : {
+              "$ref" : "#/components/schemas/TaskHref"
+            },
+            "type" : "array"
+          }
+        },
+        "required" : [ "eventType", "scheduling", "tasks" ],
+        "type" : "object"
+      },
+      "Scheduling" : {
+        "properties" : {
+          "start" : {
+            "example" : "2020-10-25T09:15:00Z",
+            "format" : "date-time",
+            "type" : "string"
+          },
+          "timezone" : {
+            "example" : "Europe/Brussels",
+            "type" : "string"
+          },
+          "startTimeSlotDuration" : {
+            "example" : 15,
+            "format" : "int32",
+            "maximum" : 240,
+            "minimum" : 0,
+            "type" : "integer"
+          },
+          "duration" : {
+            "example" : 60,
+            "format" : "int32",
+            "maximum" : 1440,
+            "minimum" : 0,
+            "type" : "integer"
+          }
+        },
+        "required" : [ "duration", "start", "timezone" ],
+        "type" : "object"
+      },
+      "RecurrenceRule" : {
+        "properties" : {
+          "frequency" : {
+            "enum" : [ "Yearly", "Monthly", "Weekly", "Daily" ],
+            "example" : "Weekly",
+            "type" : "string"
+          },
+          "count" : {
+            "example" : 10,
+            "format" : "int16",
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "interval" : {
+            "example" : 5,
+            "format" : "int16",
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "weekStart" : {
+            "example" : 1,
+            "format" : "int16",
+            "maximum" : 7,
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "byWeekDayList" : {
+            "example" : [ 1, 2 ],
+            "items" : {
+              "format" : "int16",
+              "maximum" : 7,
+              "minimum" : 1,
+              "type" : "integer"
+            },
+            "type" : "array"
+          },
+          "byMonthList" : {
+            "example" : [ 6, 11 ],
+            "items" : {
+              "format" : "int16",
+              "maximum" : 12,
+              "minimum" : 1,
+              "type" : "integer"
+            },
+            "type" : "array"
+          },
+          "byMonthDayList" : {
+            "example" : [ -31, 10 ],
+            "items" : {
+              "example" : 4,
+              "format" : "int16",
+              "pattern" : "^\\-?[1-3][0-1]?$",
+              "type" : "integer"
+            },
+            "type" : "array"
+          },
+          "bySetPosList" : {
+            "example" : [ -366, 5 ],
+            "items" : {
+              "format" : "int16",
+              "pattern" : "^\\-?[1-3][0-6]?[0-6]?$",
+              "type" : "integer"
+            },
+            "type" : "array"
+          },
+          "until" : {
+            "example" : "2020-10-25T21:59:59Z",
+            "format" : "date-time",
+            "type" : "string"
+          },
+          "rfc5545" : {
+            "example" : "FREQ=WEEKLY;COUNT=30;INTERVAL=1;WKST=MO;BYDAY=MO,TU,FR;BYMONTH=1,3",
+            "type" : "string"
+          }
+        },
+        "required" : [ "frequency" ],
+        "type" : "object"
+      },
+      "UpdateCalendarEventRequest" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/CalendarEvent"
+        } ]
+      },
+      "MeasureHref" : {
+        "properties" : {
+          "href" : {
+            "example" : "https://masana.care/api/measures/f2584c95-7df7-4f02-8181-8d0f3547cb87",
+            "type" : "string",
+            "x-data-type" : "MeasureRef"
+          }
+        },
+        "required" : [ "href" ],
+        "type" : "object"
+      },
+      "ProfessionHref" : {
+        "properties" : {
+          "href" : {
+            "example" : "https://masana.care/api/professions/beb78b4a-4f00-4738-b545-ce81abede39d",
+            "type" : "string",
+            "x-data-type" : "ProfessionRef"
+          }
+        },
+        "required" : [ "href" ],
+        "type" : "object"
+      },
+      "OrganisationHref" : {
+        "properties" : {
+          "href" : {
+            "example" : "https://masana.care/api/organisations/f2584c95-7df7-4f02-8181-8d0f3547cb87",
+            "type" : "string",
+            "x-data-type" : "OrganisationRef"
+          }
+        },
+        "required" : [ "href" ],
+        "type" : "object"
+      },
+      "Address" : {
+        "properties" : {
+          "streetName" : {
+            "example" : "Rue de l'Innovation",
+            "pattern" : "^.{1,100}$",
+            "type" : "string"
+          },
+          "streetNumber" : {
+            "example" : "6/2",
+            "pattern" : "^.{1,20}$",
+            "type" : "string"
+          },
+          "postalCode" : {
+            "example" : "7503",
+            "pattern" : "^.{1,10}$",
+            "type" : "string"
+          },
+          "city" : {
+            "example" : "Froyennes",
+            "pattern" : "^.{1,80}$",
+            "type" : "string"
+          },
+          "countryCode" : {
+            "example" : "BE",
+            "pattern" : "^[A-Z]{2}$",
+            "type" : "string"
+          }
+        },
+        "type" : "object"
+      },
+      "CalendarEventHref" : {
+        "properties" : {
+          "href" : {
+            "example" : "https://masana.care/api/calendar-events/f2584c95-7df7-4f02-8181-8d0f3547cb87",
+            "type" : "string",
+            "x-data-type" : "CalendarEventRef"
+          }
+        },
+        "required" : [ "href" ],
+        "type" : "object"
+      },
+      "TaskHref" : {
+        "properties" : {
+          "href" : {
+            "example" : "https://masana.care/api/tasks/f2584c95-7df7-4f02-8181-8d0f3547cb87",
+            "type" : "string",
+            "x-data-type" : "TaskRef"
+          }
+        },
+        "required" : [ "href" ],
+        "type" : "object"
+      },
+      "inline_object" : {
+        "properties" : {
+          "privacyPolicy" : {
+            "format" : "binary",
+            "type" : "string"
+          }
+        },
+        "required" : [ "privacyPolicy" ],
+        "type" : "object"
+      },
+      "MeasureOfBloodGlucose_allOf" : {
+        "properties" : {
+          "measureType" : {
+            "enum" : [ "MeasureOfBloodGlucose" ],
+            "type" : "string"
+          },
+          "glucose" : {
+            "example" : 85,
+            "format" : "int32",
+            "maximum" : 500,
+            "minimum" : 30,
+            "type" : "integer"
+          }
+        },
+        "required" : [ "glucose", "measureType" ],
+        "type" : "object"
+      },
+      "MeasureOfBloodPressure_allOf" : {
+        "properties" : {
+          "measureType" : {
+            "enum" : [ "MeasureOfBloodPressure" ],
+            "type" : "string"
+          },
+          "systolic" : {
+            "example" : 131,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "diastolic" : {
+            "example" : 86,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "pulse" : {
+            "example" : 196,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "irregular" : {
+            "example" : false,
+            "type" : "boolean"
+          }
+        },
+        "required" : [ "diastolic", "measureType", "systolic" ],
+        "type" : "object"
+      },
+      "MeasureOfSaturation_allOf" : {
+        "properties" : {
+          "measureType" : {
+            "enum" : [ "MeasureOfSaturation" ],
+            "type" : "string"
+          },
+          "oxygen" : {
+            "example" : 97,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "pulse" : {
+            "example" : 196,
+            "format" : "int32",
+            "type" : "integer"
+          }
+        },
+        "required" : [ "measureType" ],
+        "type" : "object"
+      },
+      "MeasureOfTemperature_allOf" : {
+        "properties" : {
+          "measureType" : {
+            "enum" : [ "MeasureOfTemperature" ],
+            "type" : "string"
+          },
+          "temperature" : {
+            "example" : 37.1,
+            "format" : "double",
+            "type" : "number"
+          }
+        },
+        "required" : [ "measureType", "temperature" ],
+        "type" : "object"
+      },
+      "MeasureOfWeight_allOf" : {
+        "properties" : {
+          "measureType" : {
+            "enum" : [ "MeasureOfWeight" ],
+            "type" : "string"
+          },
+          "weight" : {
+            "example" : 83.5,
+            "format" : "double",
+            "type" : "number"
+          }
+        },
+        "required" : [ "measureType", "weight" ],
+        "type" : "object"
+      },
+      "MeasureOfRespiratoryRate_allOf" : {
+        "properties" : {
+          "measureType" : {
+            "enum" : [ "MeasureOfRespiratoryRate" ],
+            "type" : "string"
+          },
+          "respiratoryRate" : {
+            "format" : "int32",
+            "maximum" : 80,
+            "minimum" : 1,
+            "type" : "integer"
+          }
+        },
+        "required" : [ "measureType", "respiratoryRate" ],
+        "type" : "object"
+      },
+      "MeasureOfLungCapacity_allOf" : {
+        "properties" : {
+          "measureType" : {
+            "enum" : [ "MeasureOfLungCapacity" ],
+            "type" : "string"
+          },
+          "pef" : {
+            "example" : 301,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "fev1" : {
+            "example" : 238,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "fev6" : {
+            "example" : 424,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "fef2575" : {
+            "example" : 166,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "fvc" : {
+            "example" : 424,
+            "format" : "int32",
+            "type" : "integer"
+          }
+        },
+        "required" : [ "fef2575", "fev1", "fev6", "fvc", "measureType", "pef" ],
+        "type" : "object"
+      },
+      "MeasureOfLungCapacityResponse_allOf" : {
+        "properties" : {
+          "measureType" : {
+            "enum" : [ "MeasureOfLungCapacity" ],
+            "type" : "string"
+          },
+          "pef" : {
+            "example" : 301,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "fev1" : {
+            "example" : 238,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "fev6" : {
+            "example" : 424,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "fef2575" : {
+            "example" : 166,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "fvc" : {
+            "example" : 424,
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "fev1FvcRatio" : {
+            "example" : 56.132,
+            "format" : "double",
+            "type" : "number"
+          }
+        },
+        "required" : [ "fef2575", "fev1", "fev1FvcRatio", "fev6", "fvc", "measureType", "pef" ],
+        "type" : "object"
+      },
+      "Measure_allOf" : {
+        "properties" : {
+          "dateTime" : {
+            "example" : "2020-04-25T23:40:50.52Z",
+            "format" : "date-time",
+            "type" : "string"
+          },
+          "automatic" : {
+            "example" : true,
+            "type" : "boolean"
+          },
+          "value" : {
+            "$ref" : "#/components/schemas/MeasureValue"
+          }
+        },
+        "required" : [ "automatic", "dateTime", "ref", "value" ],
+        "type" : "object"
+      },
+      "Invitation_organisation" : {
+        "description" : "The organisation for which the invitation belongs to.",
+        "example" : "{\n  \"ref\": \"/api/organisations/ce630873-d801-472e-af16-c452322d8bdb\"\n}",
+        "properties" : {
+          "ref" : {
+            "example" : "/api/organisations/ce630873-d801-472e-af16-c452322d8bdb",
+            "format" : "url",
+            "type" : "string",
+            "x-data-type" : "OrganisationRef"
+          }
+        },
+        "required" : [ "ref" ],
+        "type" : "object"
+      },
+      "Invitation_professional" : {
+        "description" : "A reference to the professional who has joined the organisation\nvia this invitation. Will be absent when `status` is different than\n`LINKED`.",
+        "example" : "{\n  \"ref\": \"/api/professionals/af3457d0-9613-43d8-aea4-aef9dd821abf\"\n}",
+        "properties" : {
+          "ref" : {
+            "example" : "/api/professionals/af3457d0-9613-43d8-aea4-aef9dd821abf",
+            "format" : "url",
+            "type" : "string",
+            "x-data-type" : "ProfessionalRef"
+          }
+        },
+        "required" : [ "ref" ],
+        "type" : "object"
+      },
+      "Profession_allOf" : {
+        "properties" : {
+          "name" : {
+            "example" : "Nurse",
+            "type" : "string"
+          }
+        },
+        "required" : [ "name" ],
+        "type" : "object"
+      }
+    },
+    "securitySchemes" : {
+      "AccessTokenAuth" : {
+        "description" : "JWT access token passed as a cookie to authorize the request.",
+        "in" : "cookie",
+        "name" : "access-token",
+        "type" : "apiKey"
+      },
+      "BearerAuth" : {
+        "bearerFormat" : "JWT",
+        "description" : "JWT access token passed as bearer token to authorize the request.",
+        "scheme" : "bearer",
+        "type" : "http"
+      }
+    }
+  }
+}
